@@ -1,24 +1,22 @@
-package com.example.backend_my_web_portafoglio.model.entity;
-
-import jakarta.persistence.*;
+package com.example.backend_my_web_portafoglio.model.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
-@Table(name = "entrate")
-public class Entrata {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_entrate")
+public class EntrataDTO {
     private Long id;
-
     private BigDecimal importo;
-    private String descrizione;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "data_entrata")
+    private String descrzione;
     private Date dataEntrata;
+
+    public EntrataDTO() {}
+
+    public EntrataDTO(Long id, BigDecimal importo, String descrzione, Date dataEntrata) {
+        this.id = id;
+        this.importo = importo;
+        this.descrzione = descrzione;
+        this.dataEntrata = dataEntrata;
+    }
 
     public Long getId() {
         return id;
@@ -36,12 +34,12 @@ public class Entrata {
         this.importo = importo;
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public String getDescrzione() {
+        return descrzione;
     }
 
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public void setDescrzione(String descrzione) {
+        this.descrzione = descrzione;
     }
 
     public Date getDataEntrata() {

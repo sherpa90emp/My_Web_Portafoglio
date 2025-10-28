@@ -1,28 +1,24 @@
-package com.example.backend_my_web_portafoglio.model.entity;
-
-import jakarta.persistence.*;
+package com.example.backend_my_web_portafoglio.model.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
-@Table(name = "spese_effettuate")
-public class Uscita {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_spesa")
+public class UscitaDTO {
     private Long id;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "data_spesa")
     private Date dataSpesa;
-
     private BigDecimal importo;
     private String descrizione;
+    private String categoriaSpesa;
 
-    @ManyToOne
-    @JoinColumn(name = "id_categoria")
-    private CategoriaSpesa categoriaSpesa;
+    private UscitaDTO() {}
+
+    public UscitaDTO(Long id, Date dataSpesa, BigDecimal importo, String descrizione, String categoriaSpesa) {
+        this.id = id;
+        this.dataSpesa = dataSpesa;
+        this.importo = importo;
+        this.descrizione = descrizione;
+        this.categoriaSpesa = categoriaSpesa;
+    }
 
     public Long getId() {
         return id;
@@ -56,11 +52,11 @@ public class Uscita {
         this.descrizione = descrizione;
     }
 
-    public CategoriaSpesa getCategoriaSpesa() {
+    public String getCategoriaSpesa() {
         return categoriaSpesa;
     }
 
-    public void setCategoriaSpesa(CategoriaSpesa categoriaSpesa) {
+    public void setCategoriaSpesa(String categoriaSpesa) {
         this.categoriaSpesa = categoriaSpesa;
     }
 }
