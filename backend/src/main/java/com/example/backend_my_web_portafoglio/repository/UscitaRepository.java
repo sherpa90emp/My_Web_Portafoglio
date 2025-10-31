@@ -9,7 +9,7 @@ import java.util.List;
 public interface UscitaRepository extends JpaRepository<Uscita, Long> {
     List<Uscita> findByCategoriaSpesa_Id(Long idCategoria);
 
-    List<Uscita> findByDescrizioneContainig(String descrizione);
+    List<Uscita> findByDescrizioneContaining(String descrizione);
 
     List<Uscita> findByDataSpesaBetween(Date start, Date end);
 }

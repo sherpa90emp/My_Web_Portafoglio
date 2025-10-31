@@ -23,7 +23,7 @@ public class Uscita {
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
-    @JsonManagedReference("spese_effettuate-categorie_spese")
+    @JsonManagedReference("spese_effettuate-categorie_spesa")
     private CategoriaSpesa categoriaSpesa;
 
     public Long getId() {

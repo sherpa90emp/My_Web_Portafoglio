@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "categorie_spese")
+@Table(name = "categorie_spesa")
 public class CategoriaSpesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class CategoriaSpesa {
     private String categoria;
 
     @OneToMany(mappedBy = "categoriaSpesa")
-    @JsonBackReference("spese_effettuate-categorie_spese")
+    @JsonBackReference("spese_effettuate-categorie_spesa")
     private List<Uscita> uscite;
 
     public Long getId() {
