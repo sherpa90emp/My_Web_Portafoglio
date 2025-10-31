@@ -1,5 +1,6 @@
 package com.example.backend_my_web_portafoglio.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class CategoriaSpesa {
     private String categoria;
 
     @OneToMany(mappedBy = "categoriaSpesa")
+    @JsonBackReference("spese_effettuate-categorie_spese")
     private List<Uscita> uscite;
 
     public Long getId() {

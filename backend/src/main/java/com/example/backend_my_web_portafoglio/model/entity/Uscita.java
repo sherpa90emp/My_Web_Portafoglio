@@ -1,5 +1,6 @@
 package com.example.backend_my_web_portafoglio.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ public class Uscita {
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
+    @JsonManagedReference("spese_effettuate-categorie_spese")
     private CategoriaSpesa categoriaSpesa;
 
     public Long getId() {
