@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Importo</th>
+      <th scope="col">Descrizione</th>
+      <th scope="col">Categoria</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (uscita of uscite; track uscita.id) {
+        <tr>
+            <td>{{uscita.dataSpesa}}</td>
+            <td>{{uscita.importo | currency: 'EUR'}}</td>
+            <td>{{uscita.descrizione}}</td>
+            <td>{{uscita.categoriaSpesa}}</td>
+        </tr>
+    }
+  </tbody>
+</table>  

@@ -1,10 +1,2 @@
-<app-sidebar />
 <app-navbar />
-<ul>
-  @for (uscita of uscite; track uscita.id) {
-  <li>
-    {{ uscita.dataSpesa }} - {{ uscita.importo }} - {{ uscita.descrizione }} -
-    {{ uscita.categoriaSpesa }}
-  </li>
-  }
-</ul>
+<div class="container-fluid"><app-tabella /></div>
