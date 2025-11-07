@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { UscitaDTO } from '../../../service/uscita';
 
 @Component({
   selector: 'app-tabella',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, DatePipe],
   templateUrl: './tabella-uscite.html',
   styleUrl: './tabella-uscite.css',
 })
