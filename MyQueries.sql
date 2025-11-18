@@ -20,13 +20,13 @@ WHERE
 -- Modifica della descrizione per ogni record trovato con parola chiave
 UPDATE `spese_effettuate`
 SET
-    `descrizione` CASE id_spesa
+    `descrizione` = CASE id_spesa
         WHEN 23 THEN 'PayPal - Italo Treno'
         WHEN 46 THEN 'PayPal - Italo Treno'
         WHEN 77 THEN 'PayPal - DeporVillage'
         WHEN 106 THEN 'PayPal - Sony Network'
         WHEN 255 THEN 'PayPal - Yakoubi Tours'
-        WHEN 299 THEN 'PayPal - Blizzard'
+        WHEN 297 THEN 'PayPal - Blizzard'
         WHEN 339 THEN 'PayPal - Ozone'
         WHEN 366 THEN 'PayPal - Holafly'
         WHEN 436 THEN 'PayPal - Register.it'
@@ -40,6 +40,7 @@ SET
         WHEN 740 THEN 'PayPal - Century Genius'
         WHEN 764 THEN 'PayPal - Regalo Nascita'
         WHEN 781 THEN 'PayPal - Deliveroo'
+        WHEN 783 THEN 'PayPal - Deliveroo'
     END
 WHERE
     id_spesa IN (
@@ -48,7 +49,7 @@ WHERE
         77,
         106,
         255,
-        299,
+        297,
         339,
         366,
         436,
@@ -61,5 +62,6 @@ WHERE
         700,
         740,
         764,
-        781
+        781,
+        783
     );
