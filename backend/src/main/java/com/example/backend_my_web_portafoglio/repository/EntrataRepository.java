@@ -10,4 +10,6 @@ public interface EntrataRepository extends JpaRepository<Entrata, Long> {
     List<Entrata> findByDescrizioneContaining(String descrizione);
 
     List<Entrata> findByDataEntrataBetween(Date start, Date end);
+
+    List<Entrata> findAllByOrderByDataEntrataAsc();
 }
