@@ -5,17 +5,37 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Entità rappresentate una singola entrata registrata nel DB.
+ * Mappa la tabella {@code entrate} del DB.
+ */
 @Entity
 @Table(name = "entrate")
 public class Entrata {
+
+    /**
+     * Identificativo univoco dell'entrata.
+     * Mappa la colonna {@code id_entrata}
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_entrate")
     private Long id;
 
+    /**
+     * Importo dell'entrata.
+     */
     private BigDecimal importo;
+
+    /**
+     * Descrizione della somma ricevuta, utile per specificare la natura o la provenienza della somma ricevuta.
+     */
     private String descrizione;
 
+    /**
+     * Data in cui è stata ricevuta la somma.
+     * Mappa la colonna {@code data_entrata}.
+     */
     @Temporal(TemporalType.DATE)
     @Column(name = "data_entrata")
     private Date dataEntrata;

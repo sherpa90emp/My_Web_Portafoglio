@@ -5,6 +5,7 @@ import com.example.backend_my_web_portafoglio.model.dto.EntrataDTO;
 import com.example.backend_my_web_portafoglio.repository.EntrataRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ public class EntrataService {
 
     /**
      * Costruttore per inizializzare il servizio con le dipendenze necessarie.
+     *
      * @param entrataRepository che gestisce l'accesso ai dati delle entrate.
      * @param entrataMapper mapper per convertire le entità Entrata in DTO e viceversa.
      */
@@ -28,6 +30,7 @@ public class EntrataService {
 
     /**
      * Recupera tutte le entrate presenti e le converte in DTO.
+     *
      * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili.
      */
     public List<EntrataDTO> getAllEntrate() {
@@ -39,6 +42,7 @@ public class EntrataService {
 
     /**
      * Recupera tutte le entrate presenti e le converte in DTO, ordinate per data.
+     *
      * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili ordinate per data.
      */
     public List<EntrataDTO> getAllEntrateOrderByAsc() {
@@ -46,5 +50,15 @@ public class EntrataService {
                 .stream()
                 .map(entrataMapper::toDTO)
                 .toList();
+    }
+
+    /**
+     * Recupera la somma di tutte le entrate presenti nel DB.
+     *
+     * @return un BigDecimal rappresentante la somma totale degli importi;
+     *          può essere {@code null} se non sono presenti entrate.
+     */
+    public BigDecimal getSommaTotaleEntrate() {
+        return entrataRepository.getSommaTotaleImportiEntrate();
     }
 }

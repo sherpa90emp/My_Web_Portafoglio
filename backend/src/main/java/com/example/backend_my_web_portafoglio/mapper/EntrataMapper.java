@@ -24,7 +24,7 @@ public class EntrataMapper {
 
         entrata.setId(entrataDTO.getId());
         entrata.setImporto(entrataDTO.getImporto());
-        entrata.setDescrizione(entrataDTO.getDescrzione());
+        entrata.setDescrizione(entrataDTO.getDescrizione());
         entrata.setDataEntrata(entrataDTO.getDataEntrata());
         return entrata;
     }

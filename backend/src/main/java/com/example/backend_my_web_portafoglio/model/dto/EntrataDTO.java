@@ -3,18 +3,47 @@ package com.example.backend_my_web_portafoglio.model.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Data Transfer Object dell'entità {@code entrata}.
+ * Utilizzato per trasferire dati trai i vari livelli dell'app senza esporre l'entità.
+ */
 public class EntrataDTO {
+    /**
+     * ID univoco dell'entrata, corrispondente al campo {@code id_entrate} dell'entità.
+     */
     private Long id;
+
+    /**
+     * Importo associato all'entrata.
+     */
     private BigDecimal importo;
-    private String descrzione;
+
+    /**
+     * Descrizione dell'importo della relativa entrata.
+     */
+    private String descrizione;
+
+    /**
+     * Data in cui è avvenuta la ricezione o la registrazione dell'importo dell'entrata.
+     */
     private Date dataEntrata;
 
+    /**
+     * Costruttore vuoto per inizializzare il DTO senza valori.
+     */
     public EntrataDTO() {}
 
-    public EntrataDTO(Long id, BigDecimal importo, String descrzione, Date dataEntrata) {
+    /**
+     * Costruttore usato per inizializzare il DTO con tutti i valori disponibili.
+     * @param id identificativo dell'entrata
+     * @param importo importo ricevuto
+     * @param descrizione descrizione relativa all'entrata ricevuta
+     * @param dataEntrata data in cui è avvenuta la ricezione o registrazione dell'entrata
+     */
+    public EntrataDTO(Long id, BigDecimal importo, String descrizione, Date dataEntrata) {
         this.id = id;
         this.importo = importo;
-        this.descrzione = descrzione;
+        this.descrizione = descrizione;
         this.dataEntrata = dataEntrata;
     }
 
@@ -34,12 +63,12 @@ public class EntrataDTO {
         this.importo = importo;
     }
 
-    public String getDescrzione() {
-        return descrzione;
+    public String getDescrizione() {
+        return descrizione;
     }
 
-    public void setDescrzione(String descrzione) {
-        this.descrzione = descrzione;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     public Date getDataEntrata() {

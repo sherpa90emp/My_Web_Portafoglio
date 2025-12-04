@@ -11,12 +11,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller responsabile della gestione delle richieste HTTP relative alle entrate.
+ * Espone le API con percorso /api/entrate.
+ */
 @RestController
 @RequestMapping("/api/entrate")
 public class EntrataController {
     @Autowired
     private EntrataService entrataService;
 
+    /**
+     * Recupera tutte le entrate nel db.
+     *
+     * @return una ResponseEntity che contiene:
+     *      - 200 OK con la lista di tutte le entrate
+     *      - 204 No Content se la lista è vuota, ovvero non esistono entrate
+     */
     @GetMapping
     public ResponseEntity<List<EntrataDTO>> getAllEntrate() {
         List<EntrataDTO> entrateDTO = new ArrayList<>(entrataService.getAllEntrate());
