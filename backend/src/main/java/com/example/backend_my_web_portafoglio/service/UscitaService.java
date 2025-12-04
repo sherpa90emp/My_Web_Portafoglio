@@ -8,18 +8,31 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * Service responsabile della business logic delle operazioni legate alle Uscite.
+ * Fornisce metodi per manipolare e recuperare i dati relativi alle uscite.
+ */
 @Service
 public class UscitaService {
     private final UscitaRepository uscitaRepository;
     private final UscitaMapper uscitaMapper;
 
-
+    /**
+     * Costruttore per inizializzare il servizio con le dipendenze necessarie.
+     *
+     * @param uscitaRepository che gestisce l'accesso ai dati delle uscite.
+     * @param uscitaMapper mapper che permette la conversione dell'entità Uscita in DTO e viceversa.
+     */
     public UscitaService(UscitaRepository uscitaRepository, UscitaMapper uscitaMapper) {
         this.uscitaRepository = uscitaRepository;
         this.uscitaMapper = uscitaMapper;
     }
 
+    /**
+     * Recupera tutte le uscite presenti e le converte in DTO.
+     *
+     * @return lista contenente tutte le {@code UscitaDTO}.
+     */
     public List<UscitaDTO> getAll() {
         return uscitaRepository.findAll()
                 .stream()
@@ -27,6 +40,13 @@ public class UscitaService {
                 .toList();
     }
 
+    /**
+     * Recupera tutte le uscite comprese in uno specifico intervallo di tempo e le converte in DTO.
+     *
+     * @param dataInizio data di inizio intervallo
+     * @param dataFine data di fine intervallo
+     * @return lista contenente le {@code UscitaDTO} comprese nell'intervallo di tempo.
+     */
     public List<UscitaDTO> findByDataSpesaBetween(Date dataInizio, Date dataFine) {
         return uscitaRepository.findByDataSpesaBetween(dataInizio, dataFine)
                 .stream()

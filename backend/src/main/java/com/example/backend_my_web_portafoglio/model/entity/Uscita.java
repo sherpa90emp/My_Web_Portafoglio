@@ -6,21 +6,45 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Entità rappresentante la singola uscita registrata sul DB.
+ * Mappa la tabella {@code spese_effettuate} del DB.
+ */
 @Entity
 @Table(name = "spese_effettuate")
 public class Uscita {
+    /**
+     * Identificativo univoco della spesa.
+     * Mappa la colonna {@code id_spesa}.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_spesa")
     private Long id;
 
+    /**
+     * Data in cui è stata effettuata/registrata la spesa.
+     * Mappa la colonna {@code data_spesa}.
+     */
     @Temporal(TemporalType.DATE)
     @Column(name = "data_spesa")
     private Date dataSpesa;
 
+    /**
+     * Importo della spesa.
+     */
     private BigDecimal importo;
+
+    /**
+     * Descrizione della spesa, utile per specificare la natura o la provenienza della spesa effettuata.
+     */
     private String descrizione;
 
+    /**
+     * Identifica a che tipo di categoria appartiene la spesa effettuata.
+     * Relazione molti a uno con l'entità {@code CategoriaSpesa}.
+     * Mappa la colonna {@code id_categoria}.
+     */
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     @JsonManagedReference("spese_effettuate-categorie_spesa")
