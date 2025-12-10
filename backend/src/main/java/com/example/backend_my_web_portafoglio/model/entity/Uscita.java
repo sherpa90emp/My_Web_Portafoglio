@@ -42,7 +42,7 @@ public class Uscita {
 
     /**
      * Identifica a che tipo di categoria appartiene la spesa effettuata.
-     * Relazione molti a uno con l'entità {@code CategoriaSpesa}.
+     * Relazione molti a uno con l'entità {@link CategoriaSpesa}.
      * Mappa la colonna {@code id_categoria}.
      */
     @ManyToOne

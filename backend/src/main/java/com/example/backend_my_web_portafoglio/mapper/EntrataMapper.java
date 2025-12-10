@@ -29,6 +29,7 @@ public class EntrataMapper {
 
     /**
      * Converte l'istanza di {@code entrataDTO} in {@code entrata}.
+     *
      * @param entrataDTO il DTO proveniente dal frontend.
      * @return l'entità convertita, oppure {@code null} se il DTO è nullo.
      */

@@ -14,12 +14,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Controller responsabile della gestione delle richieste HTTP relative alle uscite.
+ * Espone le API con percorso /api/uscite.
+ */
 @RestController
 @RequestMapping("/api/uscite")
 public class UscitaController {
     @Autowired
     private UscitaService uscitaService;
 
+    /**
+     * Recupera tutte le uscite nel db.
+     *
+     * @return una ResponseEntity che contiene:
+     *      - 200 OK con la lista di tutte le uscite
+     *      - 204 No Content se la lista è vuota, ovvero non esistono uscite
+     */
     @GetMapping
     public ResponseEntity<List<UscitaDTO>> getAllUscite() {
         List<UscitaDTO> usciteDTO = new ArrayList<>(uscitaService.getAll());
@@ -27,6 +38,15 @@ public class UscitaController {
         return ResponseEntity.ok(usciteDTO);
     }
 
+    /**
+     * Recupera tutte le uscite nel db comprese in un intervallo di tempo specifico.
+     *
+     * @param dataInizio data di inizio dell'intervallo
+     * @param dataFine data di fine dell'intervallo
+     * @return una ResponseEntity che contiene:
+     *      - 200 OK con la lista di tutte le uscite comprese nell'intervallo di tempo
+     *      - 204 No Content se la lista è vuota, ovvero non esistono uscite in quell'intervallo di tempo
+     */
     @GetMapping("/periodo")
     public ResponseEntity<List<UscitaDTO>> getUsciteDataBetween(
             @RequestParam("inizio") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dataInizio,

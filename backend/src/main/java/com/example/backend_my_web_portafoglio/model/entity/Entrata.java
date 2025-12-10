@@ -15,11 +15,7 @@ public class Entrata {
 
     /**
      * Identificativo univoco dell'entrata.
-<<<<<<< HEAD
-     * Mappa la colonna {@code id_entrata}
-=======
      * Mappa la colonna {@code id_entrata}.
->>>>>>> 68a1e13 (v 0.7.8 - aggiunta dei java docs relativi alle uscite; ultimati java docs delle entrate.)
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

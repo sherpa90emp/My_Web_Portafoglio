@@ -1,17 +1,54 @@
 package com.example.backend_my_web_portafoglio.model.dto;
 
+import com.example.backend_my_web_portafoglio.model.entity.Uscita;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Data Transfer Object dell'entità {@link Uscita}.
+ * Utilizzato per trasferire i dati tra i vari livelli dell'app senza esporre l'entità.
+ */
 public class UscitaDTO {
+    /**
+     * ID univoco dell'uscita, corrisponde al campo {@code id_spesa} dell'entità.
+     */
     private Long id;
+
+    /**
+     * Data in cui è avvenuta la registrazione o è stato effettuato il pagamento dell'importo della spesa.
+     */
     private Date dataSpesa;
+
+    /**
+     * Importo associato all'uscita.
+     */
     private BigDecimal importo;
+
+    /**
+     * Descrizione dell'importo della relativa spesa.
+     */
     private String descrizione;
+
+    /**
+     * Categoria a cui appartiene la relativa spesa.
+     */
     private String categoriaSpesa;
 
-    private UscitaDTO() {}
+    /**
+     * Costruttore vuoto per inizializzare il DTO senza valori.
+     */
+    public UscitaDTO() {}
 
+    /**
+     * Costruttore usato per inizializzare il DTO con tutti i valori disponibili.
+     *
+     * @param id identificativo dell'uscita
+     * @param dataSpesa Data in cui è avvenuta la registrazione o è stato effettuato il pagamento
+     * @param importo importo dell'uscita
+     * @param descrizione descrizione del pagamento effettuato
+     * @param categoriaSpesa categoria della spesa
+     */
     public UscitaDTO(Long id, Date dataSpesa, BigDecimal importo, String descrizione, String categoriaSpesa) {
         this.id = id;
         this.dataSpesa = dataSpesa;

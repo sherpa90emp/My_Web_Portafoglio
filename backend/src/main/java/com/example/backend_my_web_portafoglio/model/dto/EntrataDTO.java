@@ -1,11 +1,13 @@
 package com.example.backend_my_web_portafoglio.model.dto;
 
+import com.example.backend_my_web_portafoglio.model.entity.Entrata;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Data Transfer Object dell'entità {@code entrata}.
- * Utilizzato per trasferire dati trai i vari livelli dell'app senza esporre l'entità.
+ * Data Transfer Object dell'entità {@link Entrata}.
+ * Utilizzato per trasferire dati tra i vari livelli dell'app senza esporre l'entità.
  */
 public class EntrataDTO {
     /**
@@ -31,12 +33,14 @@ public class EntrataDTO {
     /**
      * Costruttore vuoto per inizializzare il DTO senza valori.
      */
-    public EntrataDTO() {}
+    public EntrataDTO() {
+    }
 
     /**
      * Costruttore usato per inizializzare il DTO con tutti i valori disponibili.
-     * @param id identificativo dell'entrata
-     * @param importo importo ricevuto
+     *
+     * @param id          identificativo dell'entrata
+     * @param importo     importo ricevuto
      * @param descrizione descrizione relativa all'entrata ricevuta
      * @param dataEntrata data in cui è avvenuta la ricezione o registrazione dell'entrata
      */
