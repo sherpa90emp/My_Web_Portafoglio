@@ -25,8 +25,8 @@ public class EntrataController {
      * Recupera tutte le entrate nel db.
      *
      * @return una ResponseEntity che contiene:
-     *      - 200 OK con la lista di tutte le entrate
-     *      - 204 No Content se la lista è vuota, ovvero non esistono entrate
+     * - 200 OK con la lista di tutte le entrate
+     * - 204 No Content se la lista è vuota, ovvero non esistono entrate
      */
     @GetMapping
     public ResponseEntity<List<EntrataDTO>> getAllEntrate() {

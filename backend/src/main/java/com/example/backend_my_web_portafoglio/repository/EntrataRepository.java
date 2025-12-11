@@ -25,7 +25,7 @@ public interface EntrataRepository extends JpaRepository<Entrata, Long> {
      * Recupera tutte le entrate in uno specifico intervallo di tempo.
      *
      * @param start data di inizio intervallo.
-     * @param end data di fine intervallo.
+     * @param end   data di fine intervallo.
      * @return lista delle entrate che rientrano in quello specifico intervallo.
      */
     List<Entrata> findByDataEntrataBetween(Date start, Date end);

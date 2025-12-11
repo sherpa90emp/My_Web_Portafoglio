@@ -38,15 +38,16 @@ public class UscitaDTO {
     /**
      * Costruttore vuoto per inizializzare il DTO senza valori.
      */
-    public UscitaDTO() {}
+    public UscitaDTO() {
+    }
 
     /**
      * Costruttore usato per inizializzare il DTO con tutti i valori disponibili.
      *
-     * @param id identificativo dell'uscita
-     * @param dataSpesa Data in cui è avvenuta la registrazione o è stato effettuato il pagamento
-     * @param importo importo dell'uscita
-     * @param descrizione descrizione del pagamento effettuato
+     * @param id             identificativo dell'uscita
+     * @param dataSpesa      Data in cui è avvenuta la registrazione o è stato effettuato il pagamento
+     * @param importo        importo dell'uscita
+     * @param descrizione    descrizione del pagamento effettuato
      * @param categoriaSpesa categoria della spesa
      */
     public UscitaDTO(Long id, Date dataSpesa, BigDecimal importo, String descrizione, String categoriaSpesa) {

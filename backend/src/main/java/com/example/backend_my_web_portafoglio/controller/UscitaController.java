@@ -28,8 +28,8 @@ public class UscitaController {
      * Recupera tutte le uscite nel db.
      *
      * @return una ResponseEntity che contiene:
-     *      - 200 OK con la lista di tutte le uscite
-     *      - 204 No Content se la lista è vuota, ovvero non esistono uscite
+     * - 200 OK con la lista di tutte le uscite
+     * - 204 No Content se la lista è vuota, ovvero non esistono uscite
      */
     @GetMapping
     public ResponseEntity<List<UscitaDTO>> getAllUscite() {
@@ -42,10 +42,10 @@ public class UscitaController {
      * Recupera tutte le uscite nel db comprese in un intervallo di tempo specifico.
      *
      * @param dataInizio data di inizio dell'intervallo
-     * @param dataFine data di fine dell'intervallo
+     * @param dataFine   data di fine dell'intervallo
      * @return una ResponseEntity che contiene:
-     *      - 200 OK con la lista di tutte le uscite comprese nell'intervallo di tempo
-     *      - 204 No Content se la lista è vuota, ovvero non esistono uscite in quell'intervallo di tempo
+     * - 200 OK con la lista di tutte le uscite comprese nell'intervallo di tempo
+     * - 204 No Content se la lista è vuota, ovvero non esistono uscite in quell'intervallo di tempo
      */
     @GetMapping("/periodo")
     public ResponseEntity<List<UscitaDTO>> getUsciteDataBetween(

@@ -5,11 +5,13 @@ import com.example.backend_my_web_portafoglio.model.dto.EntrataDTO;
 import com.example.backend_my_web_portafoglio.repository.EntrataRepository;
 import org.springframework.stereotype.Service;
 
+import com.example.backend_my_web_portafoglio.model.entity.Entrata;
+
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * Service responsabile della business logic delle operazioni legate alle Entrate.
+ * Service responsabile della business logic delle operazioni legate all'entità {@link Entrata}.
  * Fornisce metodi per manipolare e recuperare i dati relativi alle entrate.
  */
 @Service
@@ -21,7 +23,7 @@ public class EntrataService {
      * Costruttore per inizializzare il servizio con le dipendenze necessarie.
      *
      * @param entrataRepository che gestisce l'accesso ai dati delle entrate.
-     * @param entrataMapper mapper per convertire le entità Entrata in DTO e viceversa.
+     * @param entrataMapper     mapper per convertire le entità Entrata in DTO e viceversa.
      */
     public EntrataService(EntrataRepository entrataRepository, EntrataMapper entrataMapper) {
         this.entrataRepository = entrataRepository;
@@ -41,7 +43,7 @@ public class EntrataService {
     }
 
     /**
-     * Recupera tutte le entrate presenti e le converte in DTO, ordinate per data.
+     * Recupera tutte le entrate presenti e le converte in DTO, ordinate per data in ordine crescente.
      *
      * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili ordinate per data.
      */
@@ -55,8 +57,8 @@ public class EntrataService {
     /**
      * Recupera la somma di tutte le entrate presenti nel DB.
      *
-     * @return un BigDecimal rappresentante la somma totale degli importi;
-     *          può essere {@code null} se non sono presenti entrate.
+     * @return un {@code BigDecimal} rappresentante la somma totale degli importi;
+     * può essere {@code null} se non sono presenti entrate.
      */
     public BigDecimal getSommaTotaleEntrate() {
         return entrataRepository.getSommaTotaleImportiEntrate();

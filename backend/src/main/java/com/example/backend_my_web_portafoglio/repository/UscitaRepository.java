@@ -31,7 +31,7 @@ public interface UscitaRepository extends JpaRepository<Uscita, Long> {
      * Recupera tutte le spese in uno specifico intervallo di tempo.
      *
      * @param start data di inizio intervallo
-     * @param end data di fine intervallo
+     * @param end   data di fine intervallo
      * @return lista di spese comprese nell'intervallo di tempo indicato.
      */
     List<Uscita> findByDataSpesaBetween(Date start, Date end);

@@ -37,7 +37,7 @@ public class UscitaMapper {
     /**
      * Converte l'istanza di {@link UscitaDTO} in {@link Uscita}.
      *
-     * @param uscitaDTO il DTO proveniente dal frontend.
+     * @param uscitaDTO      il DTO proveniente dal frontend.
      * @param categoriaSpesa entità {@link CategoriaSpesa} associata all'uscita.
      * @return l'entità convertita, oppure {@code null} se il DTO è nullo.
      */
