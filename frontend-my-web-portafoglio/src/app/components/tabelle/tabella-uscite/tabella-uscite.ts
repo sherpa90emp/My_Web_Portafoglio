@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { UscitaDTO } from '../../../service/uscita';
+import { UscitaDTO, UscitaService } from '../../../service/uscita';
 
 @Component({
   selector: 'app-tabella',
@@ -8,6 +8,15 @@ import { UscitaDTO } from '../../../service/uscita';
   templateUrl: './tabella-uscite.html',
   styleUrl: './tabella-uscite.css',
 })
-export class Tabella {
+export class Tabella implements OnInit{
   @Input() uscite: UscitaDTO[] = [];
+
+  constructor(private uscitaService: UscitaService) {}
+
+  ngOnInit(): void {
+    this.uscitaService.getUscite().subscribe({
+      next: (data) => this.uscite = data,
+      error: (error) => console.error('Errore nel caricamento dei dati', error)
+    });
+  }
 }
