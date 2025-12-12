@@ -33,7 +33,7 @@ public class UscitaController {
      */
     @GetMapping
     public ResponseEntity<List<UscitaDTO>> getAllUscite() {
-        List<UscitaDTO> usciteDTO = new ArrayList<>(uscitaService.getAll());
+        List<UscitaDTO> usciteDTO = uscitaService.getAll();
         if (usciteDTO.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(usciteDTO);
     }
@@ -51,7 +51,7 @@ public class UscitaController {
     public ResponseEntity<List<UscitaDTO>> getUsciteDataBetween(
             @RequestParam("inizio") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dataInizio,
             @RequestParam("fine") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dataFine) {
-        List<UscitaDTO> usciteDTO = new ArrayList<>(uscitaService.findByDataSpesaBetween(dataInizio, dataFine));
+        List<UscitaDTO> usciteDTO = uscitaService.findByDataSpesaBetween(dataInizio, dataFine);
         if (usciteDTO.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(usciteDTO);
     }

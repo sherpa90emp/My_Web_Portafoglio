@@ -30,7 +30,7 @@ public class EntrataController {
      */
     @GetMapping
     public ResponseEntity<List<EntrataDTO>> getAllEntrate() {
-        List<EntrataDTO> entrateDTO = new ArrayList<>(entrataService.getAllEntrate());
+        List<EntrataDTO> entrateDTO = entrataService.getAllEntrate();
         if (entrateDTO.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(entrateDTO);
     }
