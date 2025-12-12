@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { UscitaDTO, UscitaService } from '../../../service/uscita';
+import { UscitaDTO, UscitaService } from '../../../service/uscita-service/uscita';
 
 @Component({
   selector: 'app-tabella',
