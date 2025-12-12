@@ -49,7 +49,7 @@ public class AllTransactionService {
                 ))
                 .toList();
 
-        List<AllTransactionDTO> uscite = uscitaService.getAll()
+        List<AllTransactionDTO> uscite = uscitaService.getAllUscite()
                 .stream()
                 .map(u -> new AllTransactionDTO(
                         u.getId(),

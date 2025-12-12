@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class UscitaController {
      */
     @GetMapping
     public ResponseEntity<List<UscitaDTO>> getAllUscite() {
-        List<UscitaDTO> usciteDTO = uscitaService.getAll();
+        List<UscitaDTO> usciteDTO = uscitaService.getAllUscite();
         if (usciteDTO.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(usciteDTO);
     }

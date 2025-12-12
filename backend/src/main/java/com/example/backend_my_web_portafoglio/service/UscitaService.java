@@ -35,7 +35,7 @@ public class UscitaService {
      *
      * @return lista contenente tutte le {@link UscitaDTO}.
      */
-    public List<UscitaDTO> getAll() {
+    public List<UscitaDTO> getAllUscite() {
         return uscitaRepository.findAll()
                 .stream()
                 .map(uscitaMapper::toDTO)
