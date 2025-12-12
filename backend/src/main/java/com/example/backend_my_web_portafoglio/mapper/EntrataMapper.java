@@ -13,7 +13,7 @@ public class EntrataMapper {
     /**
      * Converte l'istanza di {@link Entrata} in {@link EntrataDTO}.
      *
-     * @param entrata l'entità recuperata dal DB.
+     * @param entrata l'entità recuperata dal DB
      * @return il DTO corrispondente, oppure {@code null} se l'entità è nulla.
      */
     public EntrataDTO toDTO(Entrata entrata) {
@@ -30,7 +30,7 @@ public class EntrataMapper {
     /**
      * Converte l'istanza di {@link EntrataDTO} in {@link Entrata}.
      *
-     * @param entrataDTO il DTO proveniente dal frontend.
+     * @param entrataDTO il DTO proveniente dal frontend
      * @return l'entità convertita, oppure {@code null} se il DTO è nullo.
      */
     public Entrata toEntita(EntrataDTO entrataDTO) {

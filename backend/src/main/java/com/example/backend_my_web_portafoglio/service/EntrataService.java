@@ -22,8 +22,8 @@ public class EntrataService {
     /**
      * Costruttore per inizializzare il servizio con le dipendenze necessarie.
      *
-     * @param entrataRepository che gestisce l'accesso ai dati delle entrate.
-     * @param entrataMapper     mapper per convertire le entità Entrata in DTO e viceversa.
+     * @param entrataRepository che gestisce l'accesso ai dati delle entrate
+     * @param entrataMapper     mapper per convertire le entità Entrata in DTO e viceversa
      */
     public EntrataService(EntrataRepository entrataRepository, EntrataMapper entrataMapper) {
         this.entrataRepository = entrataRepository;

@@ -47,16 +47,20 @@ public class AllTransactionDTO {
     /**
      * Costruttore vuoto per inizializzare il DTO senza valori.
      */
-    public AllTransactionDTO() {};
+    public AllTransactionDTO() {
+    }
+
+    ;
 
     /**
+     * Costruttore usato per inizializzare il DTO con tutti i valori disponibili.
      *
-     * @param id
-     * @param importo
-     * @param descrizione
-     * @param data
-     * @param categoria
-     * @param tipo
+     * @param id          identificativo univoco
+     * @param importo     importo della transazione
+     * @param descrizione descrizione associata alla transazione
+     * @param data        data in cui è avvenuta o è stata registrata la transazione
+     * @param categoria   categoria della transazione
+     * @param tipo        tipo di transazione
      */
     public AllTransactionDTO(Long id, BigDecimal importo, String descrizione, Date data, String categoria, TipoTransazione tipo) {
         this.id = id;

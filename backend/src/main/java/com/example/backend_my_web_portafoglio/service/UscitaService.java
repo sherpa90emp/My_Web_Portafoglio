@@ -22,8 +22,8 @@ public class UscitaService {
     /**
      * Costruttore per inizializzare il servizio con le dipendenze necessarie.
      *
-     * @param uscitaRepository che gestisce l'accesso ai dati delle uscite.
-     * @param uscitaMapper     mapper che permette la conversione dell'entità Uscita in DTO e viceversa.
+     * @param uscitaRepository che gestisce l'accesso ai dati delle uscite
+     * @param uscitaMapper     mapper che permette la conversione dell'entità Uscita in DTO e viceversa
      */
     public UscitaService(UscitaRepository uscitaRepository, UscitaMapper uscitaMapper) {
         this.uscitaRepository = uscitaRepository;

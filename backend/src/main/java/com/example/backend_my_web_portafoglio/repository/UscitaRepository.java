@@ -14,7 +14,7 @@ public interface UscitaRepository extends JpaRepository<Uscita, Long> {
     /**
      * Recupera tutte le spese associate a una specifica categoria.
      *
-     * @param idCategoria identificativo della categoria di spesa.
+     * @param idCategoria identificativo della categoria di spesa
      * @return lista di spese effettuate appartenenti alla categoria richiesta.
      */
     List<Uscita> findByCategoriaSpesa_Id(Long idCategoria);

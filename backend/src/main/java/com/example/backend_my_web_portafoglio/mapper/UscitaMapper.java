@@ -15,7 +15,7 @@ public class UscitaMapper {
     /**
      * Converte l'istanza di {@link Uscita} in {@link UscitaDTO}.
      *
-     * @param uscita entità recuperata dal DB.
+     * @param uscita entità recuperata dal DB
      * @return il DTO corrispondente, oppure {@code null} se l'entità è nulla.
      */
     public UscitaDTO toDTO(Uscita uscita) {
@@ -37,8 +37,8 @@ public class UscitaMapper {
     /**
      * Converte l'istanza di {@link UscitaDTO} in {@link Uscita}.
      *
-     * @param uscitaDTO      il DTO proveniente dal frontend.
-     * @param categoriaSpesa entità {@link CategoriaSpesa} associata all'uscita.
+     * @param uscitaDTO      il DTO proveniente dal frontend
+     * @param categoriaSpesa entità {@link CategoriaSpesa} associata all'uscita
      * @return l'entità convertita, oppure {@code null} se il DTO è nullo.
      */
     public Uscita toEntita(UscitaDTO uscitaDTO, CategoriaSpesa categoriaSpesa) {
