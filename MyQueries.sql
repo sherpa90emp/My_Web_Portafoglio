@@ -65,3 +65,23 @@ WHERE
         781,
         783
     );
+
+-- Otenere sia le transazioni in entrata che in uscita ordinate in modo decrescente per data
+SELECT
+    s.data_spesa AS `data`,
+    s.descrizione,
+    s.importo,
+    c.nome_categoria AS `categoria`
+FROM
+    `spese_effettuate` AS s
+    LEFT JOIN `categorie_spesa` AS c ON s.id_categoria = c.id_categoria
+UNION ALL
+SELECT
+    e.data_entrata AS `data`,
+    e.descrizione,
+    e.importo,
+    NULL AS `categoria`
+FROM
+    `entrate` AS e
+ORDER BY
+    `data` DESC;
