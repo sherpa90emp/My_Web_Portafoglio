@@ -37,6 +37,12 @@ public interface EntrataRepository extends JpaRepository<Entrata, Long> {
      */
     List<Entrata> findAllByOrderByDataEntrataAsc();
 
+    /**
+     * Recupera tutte le entrate ordinate in modo decrescente in base alla data.
+     *
+     * @return lista di tutte le entrate ordinate secondo la lora data in ordine decrescente.
+     */
+    List<Entrata> findAllByOrderByDataEntrataDesc();
 
     /**
      * Effettua una somma di tutti gli importi presenti nella tabella.

@@ -55,6 +55,18 @@ public class EntrataService {
     }
 
     /**
+     * Recupera tutte le entrate presenti e le converte in DTO, ordinate per data in ordine decrescente.
+     *
+     * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili ordinate per data.
+     */
+    public List<EntrataDTO> getAllEntrateOrderByDesc() {
+        return entrataRepository.findAllByOrderByDataEntrataDesc()
+                .stream()
+                .map(entrataMapper::toDTO)
+                .toList();
+    }
+
+    /**
      * Recupera la somma di tutte le entrate presenti nel DB.
      *
      * @return un {@code BigDecimal} rappresentante la somma totale degli importi;
