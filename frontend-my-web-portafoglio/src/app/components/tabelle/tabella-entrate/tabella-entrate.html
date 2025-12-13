@@ -1,0 +1,18 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Importo</th>
+      <th scope="col">Descrizione</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (entrata of entrate; track entrata.id) {
+        <tr>
+            <td>{{entrata.dataEntrata| date: 'd/M/yyyy'}}</td>
+            <td>{{entrata.importo| currency: 'EUR'}}</td>
+            <td>{{entrata.descrizione}}</td>
+        </tr>
+    }
+  </tbody>
+</table> 
