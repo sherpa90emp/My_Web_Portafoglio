@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EntrataDTO, EntrataService } from '../../../service/entrata-service/entrata';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { Arrow } from "../../arrow/arrow";
 
 @Component({
   selector: 'app-tabella-entrate',
-  imports: [CurrencyPipe, DatePipe],
+  imports: [CurrencyPipe, DatePipe, Arrow],
   templateUrl: './tabella-entrate.html',
   styleUrl: './tabella-entrate.css',
 })

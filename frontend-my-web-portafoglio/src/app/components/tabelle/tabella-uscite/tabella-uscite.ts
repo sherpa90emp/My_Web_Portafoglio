@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { UscitaDTO, UscitaService } from '../../../service/uscita-service/uscita';
+import { Arrow } from "../../arrow/arrow";
 
 @Component({
   selector: 'app-tabella',
-  imports: [CurrencyPipe, DatePipe],
+  imports: [CurrencyPipe, DatePipe, Arrow],
   templateUrl: './tabella-uscite.html',
   styleUrl: './tabella-uscite.css',
 })
