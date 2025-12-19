@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EntrataDTO, EntrataService } from '../../../service/entrata-service/entrata';
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Arrow } from "../../arrow/arrow";
+import { Arrow } from '../../arrow/arrow';
 
 @Component({
   selector: 'app-tabella-entrate',
@@ -16,8 +16,14 @@ export class TabellaEntrate implements OnInit {
 
   ngOnInit(): void {
     this.entrataService.getEntrate().subscribe({
-      next: (data) => this.entrate = data,
-      error: (error) => console.error('Errore nel caricamento dei dati', error)
-    })
+      next: (data) => (this.entrate = data),
+      error: (error) => console.error('Errore nel caricamento dei dati', error),
+    });
+  }
+
+  ordina(campo: 'dataEntrata' | 'importo', direzione: 'asc' | 'desc') {
+    this.entrataService
+      .getEntrateOrdinate(campo, direzione)
+      .subscribe((data) => (this.entrate = data));
   }
 }

@@ -18,4 +18,11 @@ export class EntrataService {
     getEntrate(): Observable<EntrataDTO[]> {
       return this.http.get<EntrataDTO[]>(this.apiUrl);
     }
+
+    getEntrateOrdinate(
+      campo: string,
+      ordine: 'asc' | 'desc'
+    ): Observable<EntrataDTO[]> {
+      return this.http.get<EntrataDTO[]>(`this.apiUrl/${campo}/${ordine}`)
+    }
 }
