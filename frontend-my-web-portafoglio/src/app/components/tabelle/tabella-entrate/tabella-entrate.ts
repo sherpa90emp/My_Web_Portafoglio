@@ -22,7 +22,7 @@ export class TabellaEntrate implements OnInit {
       next: (data) => (this.entrate = data),
       error: (error) => console.error('Errore nel caricamento dei dati', error),
     });
-//TODO rivedere questa sezione, non funziona correttamente
+    
     this.sort$
       .pipe(
         switchMap(({ campo, direzione }) =>
