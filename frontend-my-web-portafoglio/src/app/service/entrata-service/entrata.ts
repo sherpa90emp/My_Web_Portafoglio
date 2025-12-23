@@ -23,6 +23,6 @@ export class EntrataService {
       campo: string,
       ordine: 'asc' | 'desc'
     ): Observable<EntrataDTO[]> {
-      return this.http.get<EntrataDTO[]>(`this.apiUrl/${campo}/${ordine}`)
+      return this.http.get<EntrataDTO[]>(`${this.apiUrl}/${campo}/${ordine}`)
     }
 }

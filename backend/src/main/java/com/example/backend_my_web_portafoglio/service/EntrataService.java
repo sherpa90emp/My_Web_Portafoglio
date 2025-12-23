@@ -47,7 +47,7 @@ public class EntrataService {
      *
      * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili ordinate per data.
      */
-    public List<EntrataDTO> getAllEntrateOrderByAsc() {
+    public List<EntrataDTO> getAllEntrateOrderByDataAsc() {
         return entrataRepository.findAllByOrderByDataEntrataAsc()
                 .stream()
                 .map(entrataMapper::toDTO)
@@ -59,7 +59,7 @@ public class EntrataService {
      *
      * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili ordinate per data.
      */
-    public List<EntrataDTO> getAllEntrateOrderByDesc() {
+    public List<EntrataDTO> getAllEntrateOrderByDataDesc() {
         return entrataRepository.findAllByOrderByDataEntrataDesc()
                 .stream()
                 .map(entrataMapper::toDTO)

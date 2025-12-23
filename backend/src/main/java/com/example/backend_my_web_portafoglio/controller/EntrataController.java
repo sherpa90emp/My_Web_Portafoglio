@@ -34,4 +34,18 @@ public class EntrataController {
         if (entrateDTO.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(entrateDTO);
     }
+
+    @GetMapping("/dataEntrata/desc")
+    public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByDataDesc() {
+        List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByDataDesc();
+        if (entrateDTO.isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(entrateDTO);
+    }
+
+    @GetMapping("/dataEntrata/asc")
+    public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByDataAsc() {
+        List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByDataAsc();
+        if (entrateDTO.isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(entrateDTO);
+    }
 }
