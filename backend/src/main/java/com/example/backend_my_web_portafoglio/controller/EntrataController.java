@@ -35,6 +35,13 @@ public class EntrataController {
         return ResponseEntity.ok(entrateDTO);
     }
 
+    /**
+     * Recupera tutte le entrate nel db in ordine decrescente.
+     *
+     * @return una ResponseEntity che contiene:
+     * - 200 OK con la lista ordinata di tutte le entrate
+     * - 204 No Content se la lista è vuota, ovvero non esistono entrate
+     */
     @GetMapping("/dataEntrata/desc")
     public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByDataDesc() {
         List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByDataDesc();
@@ -42,6 +49,13 @@ public class EntrataController {
         return ResponseEntity.ok(entrateDTO);
     }
 
+    /**
+     * Recupera tutte le entrate nel db in ordine ascendente.
+     *
+     * @return una ResponseEntity che contiene:
+     * - 200 OK con la lista ordinata di tutte le entrate
+     * - 204 No Content se la lista è vuota, ovvero non esistono entrate
+     */
     @GetMapping("/dataEntrata/asc")
     public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByDataAsc() {
         List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByDataAsc();
