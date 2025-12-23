@@ -36,7 +36,7 @@ public class EntrataController {
     }
 
     /**
-     * Recupera tutte le entrate nel db in ordine decrescente.
+     * Recupera tutte le entrate nel db in ordine decrescente secondo la data.
      *
      * @return una ResponseEntity che contiene:
      * - 200 OK con la lista ordinata di tutte le entrate
@@ -50,7 +50,7 @@ public class EntrataController {
     }
 
     /**
-     * Recupera tutte le entrate nel db in ordine ascendente.
+     * Recupera tutte le entrate nel db in ordine ascendente secondo la data.
      *
      * @return una ResponseEntity che contiene:
      * - 200 OK con la lista ordinata di tutte le entrate
@@ -60,6 +60,34 @@ public class EntrataController {
     public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByDataAsc() {
         List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByDataAsc();
         if (entrateDTO.isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(entrateDTO);
+    }
+
+    /**
+     * Recupera tutte le entrate nel db in ordine decrescente secondo l'importo.
+     *
+     * @return una ResponseEntity che contiene:
+     * - 200 OK con la lista ordinata di tutte le entrate
+     * - 204 No Content se la lista è vuota, ovvero non esistono entrate
+     */
+    @GetMapping("/importo/desc")
+    public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByImportoDesc() {
+        List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByImportoDesc();
+        if (entrateDTO.isEmpty()) ResponseEntity.noContent().build();
+        return ResponseEntity.ok(entrateDTO);
+    }
+
+    /**
+     * Recupera tutte le entrate nel db in ordine ascendente secondo l'importo.
+     *
+     * @return una ResponseEntity che contiene:
+     * - 200 OK con la lista ordinata di tutte le entrate
+     * - 204 No Content se la lista è vuota, ovvero non esistono entrate
+     */
+    @GetMapping("/importo/asc")
+    public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByImportoAsc() {
+        List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByImportoAsc();
+        if (entrateDTO.isEmpty()) ResponseEntity.noContent().build();
         return ResponseEntity.ok(entrateDTO);
     }
 }
