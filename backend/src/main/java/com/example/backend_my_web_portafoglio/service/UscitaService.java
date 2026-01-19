@@ -1,6 +1,7 @@
 package com.example.backend_my_web_portafoglio.service;
 
 import com.example.backend_my_web_portafoglio.mapper.UscitaMapper;
+import com.example.backend_my_web_portafoglio.model.dto.EntrataDTO;
 import com.example.backend_my_web_portafoglio.model.dto.UscitaDTO;
 import com.example.backend_my_web_portafoglio.repository.UscitaRepository;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,54 @@ public class UscitaService {
      */
     public List<UscitaDTO> findByDataSpesaBetween(Date dataInizio, Date dataFine) {
         return uscitaRepository.findByDataSpesaBetween(dataInizio, dataFine)
+                .stream()
+                .map(uscitaMapper::toDTO)
+                .toList();
+    }
+
+    /**
+     * Recupera tutte le uscite presenti e le converte in DTO, ordinate per data in ordine crescente.
+     *
+     * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per data.
+     */
+    public  List<UscitaDTO> getAllUsciteOrderByDataAsc() {
+        return uscitaRepository.findAllByOrderByDataAsc()
+                .stream()
+                .map(uscitaMapper::toDTO)
+                .toList();
+    }
+
+    /**
+     * Recupera tutte le uscite presenti e le converte in DTO, ordinate per data in ordine decrescente.
+     *
+     * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per data.
+     */
+    public List<UscitaDTO> getAllUsciteOrderByDataDesc() {
+        return uscitaRepository.findAllByOrderByDataDesc()
+                .stream()
+                .map(uscitaMapper::toDTO)
+                .toList();
+    }
+
+    /**
+     * Recupera tutte le uscite presenti e le converte in DTO, ordinate per importo in ordine crescente.
+     *
+     * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per importo.
+     */
+    public List<UscitaDTO> getAllUsciteOrderByImportoAsc() {
+        return uscitaRepository.findAllByOrderByImportoAsc()
+                .stream()
+                .map(uscitaMapper::toDTO)
+                .toList();
+    }
+
+    /**
+     * Recupera tutte le uscite presenti e le converte in DTO, ordinate per importo in ordine decrescente.
+     *
+     * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per importo.
+     */
+    public List<UscitaDTO> getAllUsciteOrderByImportoDesc() {
+        return uscitaRepository.findAllByOrderByImportoDesc()
                 .stream()
                 .map(uscitaMapper::toDTO)
                 .toList();
