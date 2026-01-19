@@ -35,4 +35,32 @@ public interface UscitaRepository extends JpaRepository<Uscita, Long> {
      * @return lista di spese comprese nell'intervallo di tempo indicato.
      */
     List<Uscita> findByDataSpesaBetween(Date start, Date end);
+
+    /**
+     * Recupera tutte le uscite ordinate in modo crescente in base all'importo.
+     *
+     * @return lista di tutte le uscite ordinate secondo la grandezza dell'importo.
+     */
+    List<Uscita> findAllByOrderByImportoAsc();
+
+    /**
+     * Recupera tutte le uscite ordinate in modo decrescente in base all'importo.
+     *
+     * @return lista di tutte le uscite ordinate secondo la grandezza dell'importo.
+     */
+    List<Uscita> findAllByOrderByImportoDesc();
+
+    /**
+     * Recupera tutte le uscite ordinate in modo decrescente in base alla data.
+     *
+     * @return lista di tutte le uscite ordinate secondo la loro data in ordine decrescente.
+     */
+    List<Uscita> findAllByOrderByDataDesc();
+
+    /**
+     * Recupera tutte le uscite ordinate in modo crescente in base alla data.
+     *
+     * @return lista di tutte le uscite ordinate secondo la loro data in ordine crescente.
+     */
+    List<Uscita> findAllByOrderByDataAsc();
 }

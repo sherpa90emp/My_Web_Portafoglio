@@ -33,14 +33,14 @@ public interface EntrataRepository extends JpaRepository<Entrata, Long> {
     /**
      * Recupera tutte le entrate ordinate in modo crescente in base alla data.
      *
-     * @return lista di tutte le entrate ordinate secondo la lora data in ordine crescente.
+     * @return lista di tutte le entrate ordinate secondo la loro data in ordine crescente.
      */
     List<Entrata> findAllByOrderByDataEntrataAsc();
 
     /**
      * Recupera tutte le entrate ordinate in modo decrescente in base alla data.
      *
-     * @return lista di tutte le entrate ordinate secondo la lora data in ordine decrescente.
+     * @return lista di tutte le entrate ordinate secondo la loro data in ordine decrescente.
      */
     List<Entrata> findAllByOrderByDataEntrataDesc();
 
