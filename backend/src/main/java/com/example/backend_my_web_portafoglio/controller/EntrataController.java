@@ -5,6 +5,7 @@ import com.example.backend_my_web_portafoglio.service.EntrataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,58 +37,53 @@ public class EntrataController {
     }
 
     /**
-     * Recupera tutte le entrate nel db in ordine decrescente secondo la data.
+     * Recupera tutte le entrate nel db ordinate in base a un campo e a una direzione specifica.
+     *
+     * @param campo il campo su cui ordinare le entrate
+     *              Valori ammessi: {@code dataEntrata}, {@code importo}
+     * @param ordine la direzione di ordinamento
+     *               Valori ammessi: {@code asc}, {@code desc}
      *
      * @return una ResponseEntity che contiene:
-     * - 200 OK con la lista ordinata di tutte le entrate
+     * - 200 OK con la lista di tutte le entrate ordinate
      * - 204 No Content se la lista è vuota, ovvero non esistono entrate
+     * - 400 Bad Request se il mapping è errato
      */
-    @GetMapping("/dataEntrata/desc")
-    public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByDataDesc() {
-        List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByDataDesc();
-        if (entrateDTO.isEmpty()) return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(entrateDTO);
-    }
+    @GetMapping("/{campo}/{ordine}")
+    public ResponseEntity<List<EntrataDTO>> getAllEntrateOrder(
+            @PathVariable String campo,
+            @PathVariable String ordine
+    ) {
+        List<EntrataDTO> entrateDTO;
 
-    /**
-     * Recupera tutte le entrate nel db in ordine ascendente secondo la data.
-     *
-     * @return una ResponseEntity che contiene:
-     * - 200 OK con la lista ordinata di tutte le entrate
-     * - 204 No Content se la lista è vuota, ovvero non esistono entrate
-     */
-    @GetMapping("/dataEntrata/asc")
-    public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByDataAsc() {
-        List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByDataAsc();
-        if (entrateDTO.isEmpty()) return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(entrateDTO);
-    }
+        boolean asc = "asc".equalsIgnoreCase(ordine);
+        boolean desc = "desc".equalsIgnoreCase(ordine);
 
-    /**
-     * Recupera tutte le entrate nel db in ordine decrescente secondo l'importo.
-     *
-     * @return una ResponseEntity che contiene:
-     * - 200 OK con la lista ordinata di tutte le entrate
-     * - 204 No Content se la lista è vuota, ovvero non esistono entrate
-     */
-    @GetMapping("/importo/desc")
-    public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByImportoDesc() {
-        List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByImportoDesc();
-        if (entrateDTO.isEmpty()) ResponseEntity.noContent().build();
-        return ResponseEntity.ok(entrateDTO);
-    }
+        if (!asc && !desc) return ResponseEntity.badRequest().build();
 
-    /**
-     * Recupera tutte le entrate nel db in ordine ascendente secondo l'importo.
-     *
-     * @return una ResponseEntity che contiene:
-     * - 200 OK con la lista ordinata di tutte le entrate
-     * - 204 No Content se la lista è vuota, ovvero non esistono entrate
-     */
-    @GetMapping("/importo/asc")
-    public ResponseEntity<List<EntrataDTO>> getAllEntrateOrderByImportoAsc() {
-        List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderByImportoAsc();
-        if (entrateDTO.isEmpty()) ResponseEntity.noContent().build();
+        switch (campo) {
+            case "dataEntrata":
+                if (asc) {
+                    entrateDTO = entrataService.getAllEntrateOrderByDataAsc();
+                } else {
+                    entrateDTO = entrataService.getAllEntrateOrderByDataDesc();
+                }
+                break;
+            case "importo":
+                if (asc) {
+                    entrateDTO = entrataService.getAllEntrateOrderByImportoAsc();
+                } else {
+                    entrateDTO = entrataService.getAllEntrateOrderByImportoDesc();
+                }
+                break;
+            default:
+                return ResponseEntity.badRequest().build();
+        }
+
+        if (entrateDTO.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
         return ResponseEntity.ok(entrateDTO);
     }
 }
