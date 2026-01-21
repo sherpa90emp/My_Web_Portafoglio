@@ -1,8 +1,8 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Data <app-arrow /></th>
-      <th scope="col">Importo <app-arrow /></th>
+      <th scope="col">Data <app-arrow (sort)="ordina('dataSpesa', $event)"/></th>
+      <th scope="col">Importo <app-arrow (sort)="ordina('importo', $event)"/></th>
       <th scope="col">Descrizione</th>
       <th scope="col">Categoria</th>
     </tr>

@@ -15,6 +15,7 @@ export class EntrataService {
   private apiUrl = 'http://localhost:8081/api/entrate';
   
   constructor(private http: HttpClient) {}
+  
     getEntrate(): Observable<EntrataDTO[]> {
       return this.http.get<EntrataDTO[]>(this.apiUrl);
     }

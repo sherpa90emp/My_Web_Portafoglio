@@ -22,17 +22,17 @@ export class TabellaEntrate implements OnInit {
       next: (data) => (this.entrate = data),
       error: (error) => console.error('Errore nel caricamento dei dati', error),
     });
-    
+
     this.sort$
       .pipe(
         switchMap(({ campo, direzione }) =>
-          this.entrataService.getEntrateOrdinate(campo, direzione)
-        )
+          this.entrataService.getEntrateOrdinate(campo, direzione),
+        ),
       )
       .subscribe((data) => (this.entrate = data));
   }
 
   ordina(campo: 'dataEntrata' | 'importo', direzione: 'asc' | 'desc') {
-    this.sort$.next({campo, direzione});
+    this.sort$.next({ campo, direzione });
   }
 }

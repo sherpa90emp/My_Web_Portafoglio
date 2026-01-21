@@ -14,15 +14,18 @@ export interface UscitaDTO {
   providedIn: 'root',
 })
 export class UscitaService {
-  private readonly baseUrl = 'http://localhost:8081/api/uscite';
+  private apiUrl = 'http://localhost:8081/api/uscite';
 
   constructor(private http: HttpClient) {}
 
   getUscite(): Observable<UscitaDTO[]> {
-    return this.http.get<UscitaDTO[]>(this.baseUrl);
+    return this.http.get<UscitaDTO[]>(this.apiUrl);
   }
 
-  getUsciteDesc(): Observable<UscitaDTO[]> {
-    return this.http.get<UscitaDTO[]>(`${this.baseUrl}/desc`);
+  getUsciteOrdinate(
+    campo: string,
+    ordine: 'asc' | 'desc'
+  ): Observable<UscitaDTO[]> {
+    return this.http.get<UscitaDTO[]>(`${this.apiUrl}/${campo}/${ordine}`);
   }
 }
