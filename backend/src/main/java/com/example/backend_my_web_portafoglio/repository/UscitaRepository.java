@@ -55,12 +55,12 @@ public interface UscitaRepository extends JpaRepository<Uscita, Long> {
      *
      * @return lista di tutte le uscite ordinate secondo la loro data in ordine decrescente.
      */
-    List<Uscita> findAllByOrderByDataDesc();
+    List<Uscita> findAllByOrderByDataSpesaDesc();
 
     /**
      * Recupera tutte le uscite ordinate in modo crescente in base alla data.
      *
      * @return lista di tutte le uscite ordinate secondo la loro data in ordine crescente.
      */
-    List<Uscita> findAllByOrderByDataAsc();
+    List<Uscita> findAllByOrderByDataSpesaAsc();
 }

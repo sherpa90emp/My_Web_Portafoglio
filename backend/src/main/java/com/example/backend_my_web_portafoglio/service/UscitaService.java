@@ -63,7 +63,7 @@ public class UscitaService {
      * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per data.
      */
     public  List<UscitaDTO> getAllUsciteOrderByDataAsc() {
-        return uscitaRepository.findAllByOrderByDataAsc()
+        return uscitaRepository.findAllByOrderByDataSpesaAsc()
                 .stream()
                 .map(uscitaMapper::toDTO)
                 .toList();
@@ -75,7 +75,7 @@ public class UscitaService {
      * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per data.
      */
     public List<UscitaDTO> getAllUsciteOrderByDataDesc() {
-        return uscitaRepository.findAllByOrderByDataDesc()
+        return uscitaRepository.findAllByOrderByDataSpesaDesc()
                 .stream()
                 .map(uscitaMapper::toDTO)
                 .toList();
