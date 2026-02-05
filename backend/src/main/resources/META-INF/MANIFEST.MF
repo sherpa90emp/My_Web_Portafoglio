@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.example.backend_my_web_portafoglio.BackendMyWebPortafogl
+ ioApplication
+
