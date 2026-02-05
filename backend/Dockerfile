@@ -1,8 +1,8 @@
-FROM openjdk:17-slim
+FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /app
 
-COPY out/artifacts/backend_my_web_portafoglio_jar/backend-my-web-portafoglio.jar app.jar
+COPY target/*.jar app.jar
 
 EXPOSE 8080
 
