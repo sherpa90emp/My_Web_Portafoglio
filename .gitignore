@@ -29,3 +29,5 @@ Thumbs.db
 # VARI
 # ==========================
 .env
+backup.sql
+mysql_data/
