@@ -9,8 +9,8 @@
   <tbody>
     @for (entrata of entrate; track entrata.id) {
         <tr>
-            <td>{{entrata.dataEntrata| date: 'd/M/yyyy'}}</td>
-            <td>{{entrata.importo| currency: 'EUR'}}</td>
+            <td>{{entrata.dataEntrata | date: 'd/M/yyyy'}}</td>
+            <td>{{entrata.importo | currency: 'EUR'}}</td>
             <td>{{entrata.descrizione}}</td>
         </tr>
     }
