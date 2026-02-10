@@ -1,1 +1,24 @@
-<p>tabella-all-transaction works!</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Data <app-arrow /></th>
+      <th scope="col">Importo <app-arrow /></th>
+      <th scope="col">Descrizione</th>
+      <th scope="col">Categoria</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (transaction of allTransaction; track transaction.id) {
+      <tr>
+        <td>{{ transaction.data | date: 'd/M/yyyy' }}</td>
+        @if (transaction.tipo === 'ENTRATA') {
+          <td style="color: green">{{ transaction.importo | currency: 'EUR' }}</td>
+        } @else {
+          <td style="color: red">{{ transaction.importo | currency: 'EUR' }}</td>
+        }
+        <td>{{ transaction.descrizione }}</td>
+        <td>{{ transaction.categoria }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

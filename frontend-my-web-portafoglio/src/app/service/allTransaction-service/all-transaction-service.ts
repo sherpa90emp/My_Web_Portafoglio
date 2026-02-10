@@ -8,13 +8,13 @@ export interface AllTransactionDTO {
   descrizione: string;
   data: string;
   categoria: string;
-  tipoTransazione: string;
+  tipo: string;
 }
 @Injectable({
   providedIn: 'root',
 })
 export class AllTransactionService {
-  private apiUrl = "https://localhost:8081/api/alltransaction";
+  private apiUrl = "http://localhost:8081/api/alltransaction";
 
   constructor(private http: HttpClient) {}
 
