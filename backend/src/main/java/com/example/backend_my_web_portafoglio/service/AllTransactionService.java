@@ -40,7 +40,7 @@ public class AllTransactionService {
         List<AllTransactionDTO> entrate = entrataService.getAllEntrate()
                 .stream()
                 .map(e -> new AllTransactionDTO(
-                        e.getId(),
+                        "ENTRATA - " + e.getId(),
                         e.getImporto(),
                         e.getDescrizione(),
                         e.getDataEntrata(),
@@ -52,7 +52,7 @@ public class AllTransactionService {
         List<AllTransactionDTO> uscite = uscitaService.getAllUscite()
                 .stream()
                 .map(u -> new AllTransactionDTO(
-                        u.getId(),
+                        "USCITA - " + u.getId(),
                         u.getImporto(),
                         u.getDescrizione(),
                         u.getDataSpesa(),

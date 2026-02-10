@@ -14,7 +14,7 @@ public class AllTransactionDTO {
     /**
      * Identificativo univoco della transazione, corrispondente all'ID dell'entità di origine ({@link Entrata} o {@link Uscita}).
      */
-    private Long id;
+    private String id;
 
     /**
      * Importo in entrata o in uscita della transazione.
@@ -62,7 +62,7 @@ public class AllTransactionDTO {
      * @param categoria   categoria della transazione
      * @param tipo        tipo di transazione
      */
-    public AllTransactionDTO(Long id, BigDecimal importo, String descrizione, Date data, String categoria, TipoTransazione tipo) {
+    public AllTransactionDTO(String id, BigDecimal importo, String descrizione, Date data, String categoria, TipoTransazione tipo) {
         this.id = id;
         this.importo = importo;
         this.descrizione = descrizione;
@@ -71,11 +71,11 @@ public class AllTransactionDTO {
         this.tipo = tipo;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
