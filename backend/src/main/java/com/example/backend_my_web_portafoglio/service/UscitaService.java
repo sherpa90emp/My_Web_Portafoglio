@@ -1,9 +1,12 @@
 package com.example.backend_my_web_portafoglio.service;
 
 import com.example.backend_my_web_portafoglio.mapper.UscitaMapper;
-import com.example.backend_my_web_portafoglio.model.dto.EntrataDTO;
 import com.example.backend_my_web_portafoglio.model.dto.UscitaDTO;
 import com.example.backend_my_web_portafoglio.repository.UscitaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.backend_my_web_portafoglio.model.entity.Uscita;
@@ -103,5 +106,19 @@ public class UscitaService {
                 .stream()
                 .map(uscitaMapper::toDTO)
                 .toList();
+    }
+
+    /**
+     * Recupera una pagina di uscite presenti convertite in DTO, ordinate per data in ordine decrescente.
+     *
+     * @param numPage numero della pagina da recuperare
+     * @param quantityInPage quantità massima di Uscite presenti per singola pagina
+     * @return un oggetto {@link Page} contenente le {@link UscitaDTO} disponibili ordinate per data e i metadati di paginazione.
+     */
+    public Page<UscitaDTO> getAllUsciteOrderByDataDescPaginate(int numPage, int quantityInPage) {
+        Pageable pageable = PageRequest.of(numPage, quantityInPage, Sort.by("dataSpesa").descending());
+
+        return uscitaRepository.findAll(pageable)
+                .map(uscitaMapper::toDTO);
     }
 }

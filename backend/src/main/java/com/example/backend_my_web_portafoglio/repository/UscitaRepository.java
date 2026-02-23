@@ -1,6 +1,8 @@
 package com.example.backend_my_web_portafoglio.repository;
 
 import com.example.backend_my_web_portafoglio.model.entity.Uscita;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
@@ -63,4 +65,12 @@ public interface UscitaRepository extends JpaRepository<Uscita, Long> {
      * @return lista di tutte le uscite ordinate secondo la loro data in ordine crescente.
      */
     List<Uscita> findAllByOrderByDataSpesaAsc();
+
+    /**
+     * Recupera una pagina di uscite in base ai parametri di paginazione.
+     *
+     * @param pageable oggetto {@link Pageable} contenente i metadati per la selezione delle uscite del db.
+     * @return un oggetto {@link Page} contenente le {@link Uscita} disponibili ordinate per data e i metadati di paginazione.
+     */
+    Page<Uscita> findAll(Pageable pageable);
 }
