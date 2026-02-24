@@ -3,6 +3,7 @@ package com.example.backend_my_web_portafoglio.controller;
 import com.example.backend_my_web_portafoglio.model.dto.UscitaDTO;
 import com.example.backend_my_web_portafoglio.service.UscitaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -101,5 +102,17 @@ public class UscitaController {
         }
 
         return ResponseEntity.ok(uscitaDTO);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<UscitaDTO>> getPaginaUscite(
+            @RequestParam(defaultValue = "0") int numeroPagina,
+            @RequestParam(defaultValue = "10") int quantitaPerPagina
+    ) {
+        if (numeroPagina < 0 || quantitaPerPagina <= 0) return ResponseEntity.badRequest().build();
+
+        Page<UscitaDTO> uscitaDTOPage = uscitaService.getAllUsciteOrderByDataDescPaginate(numeroPagina, quantitaPerPagina);
+        if (uscitaDTOPage.isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(uscitaDTOPage);
     }
 }

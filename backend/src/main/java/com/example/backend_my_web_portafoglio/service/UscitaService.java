@@ -111,12 +111,12 @@ public class UscitaService {
     /**
      * Recupera una pagina di uscite presenti convertite in DTO, ordinate per data in ordine decrescente.
      *
-     * @param numPage numero della pagina da recuperare
-     * @param quantityInPage quantità massima di Uscite presenti per singola pagina
+     * @param numeroPagina numero della pagina da recuperare
+     * @param quantitaInPagina quantità massima di Uscite presenti per singola pagina
      * @return un oggetto {@link Page} contenente le {@link UscitaDTO} disponibili ordinate per data e i metadati di paginazione.
      */
-    public Page<UscitaDTO> getAllUsciteOrderByDataDescPaginate(int numPage, int quantityInPage) {
-        Pageable pageable = PageRequest.of(numPage, quantityInPage, Sort.by("dataSpesa").descending());
+    public Page<UscitaDTO> getAllUsciteOrderByDataDescPaginate(int numeroPagina, int quantitaInPagina) {
+        Pageable pageable = PageRequest.of(numeroPagina, quantitaInPagina, Sort.by("dataSpesa").descending());
 
         return uscitaRepository.findAll(pageable)
                 .map(uscitaMapper::toDTO);

@@ -72,5 +72,5 @@ public interface UscitaRepository extends JpaRepository<Uscita, Long> {
      * @param pageable oggetto {@link Pageable} contenente i metadati per la selezione delle uscite del db.
      * @return un oggetto {@link Page} contenente le {@link Uscita} disponibili ordinate per data e i metadati di paginazione.
      */
-    Page<Uscita> findAll(Pageable pageable);
+    Page<Uscita> findAllByPage(Pageable pageable);
 }
