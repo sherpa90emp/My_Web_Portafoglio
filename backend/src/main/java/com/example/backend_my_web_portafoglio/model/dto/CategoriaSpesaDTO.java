@@ -1,6 +1,8 @@
 package com.example.backend_my_web_portafoglio.model.dto;
 
 import com.example.backend_my_web_portafoglio.model.entity.CategoriaSpesa;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 /**
  * Data Transfer Object dell'entità {@link CategoriaSpesa}.
@@ -10,6 +12,8 @@ public class CategoriaSpesaDTO {
     /**
      * ID univoco della categoria di spesa, corrispondente al campo dell'entità {@code id_categoria}.
      */
+    @NotNull(message = "L'id è obbligatorio")
+    @Positive
     private Long id;
 
     /**
