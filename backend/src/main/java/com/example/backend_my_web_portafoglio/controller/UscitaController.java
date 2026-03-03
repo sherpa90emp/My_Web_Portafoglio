@@ -104,6 +104,16 @@ public class UscitaController {
         return ResponseEntity.ok(uscitaDTO);
     }
 
+    /**
+     * Recupera una pagina di uscite dal db, ordinate per data decrescente.
+     *
+     * @param numeroPagina l'indice della pagina da recuperare
+     * @param quantitaPerPagina Il numero massimo di elementi per pagina.
+     * @return una ResponseEntity che contiene:
+     * - 200 OK con la pagina contenente le uscite
+     * - 400 Bad Request se i parametri di paginazione non sono validi
+     * - 204 No Content se la pagina è vuota, ovvero non ci sono uscite
+     */
     @GetMapping("/page")
     public ResponseEntity<Page<UscitaDTO>> getPaginaUscite(
             @RequestParam(defaultValue = "0") int numeroPagina,
