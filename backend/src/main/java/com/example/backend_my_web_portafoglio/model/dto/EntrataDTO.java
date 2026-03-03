@@ -1,6 +1,10 @@
 package com.example.backend_my_web_portafoglio.model.dto;
 
 import com.example.backend_my_web_portafoglio.model.entity.Entrata;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,11 +17,13 @@ public class EntrataDTO {
     /**
      * ID univoco dell'entrata, corrispondente al campo {@code id_entrate} dell'entità.
      */
+    @Positive
     private Long id;
 
     /**
      * Importo associato all'entrata.
      */
+    @PositiveOrZero(message = "L'importo deve essere positivo")
     private BigDecimal importo;
 
     /**
@@ -28,6 +34,8 @@ public class EntrataDTO {
     /**
      * Data in cui è avvenuta la ricezione o la registrazione dell'importo dell'entrata.
      */
+    @NotNull(message = "La data è obbligatoria")
+    @PastOrPresent(message = "La data non può essere nel futuro")
     private Date dataEntrata;
 
     /**
