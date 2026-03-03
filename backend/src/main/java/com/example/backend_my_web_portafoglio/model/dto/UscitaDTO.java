@@ -1,6 +1,7 @@
 package com.example.backend_my_web_portafoglio.model.dto;
 
 import com.example.backend_my_web_portafoglio.model.entity.Uscita;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,16 +14,20 @@ public class UscitaDTO {
     /**
      * ID univoco dell'uscita, corrisponde al campo {@code id_spesa} dell'entità.
      */
+    @Positive
     private Long id;
 
     /**
      * Data in cui è avvenuta la registrazione o è stato effettuato il pagamento dell'importo della spesa.
      */
+    @NotNull(message = "La data è obbligatoria")
+    @PastOrPresent(message = "La data non può essere nel futuro")
     private Date dataSpesa;
 
     /**
      * Importo associato all'uscita.
      */
+    @PositiveOrZero(message = "L'importo deve essere positivo")
     private BigDecimal importo;
 
     /**
@@ -33,6 +38,7 @@ public class UscitaDTO {
     /**
      * Categoria a cui appartiene la relativa spesa.
      */
+    @NotBlank(message = "La categoria non può essere vuota")
     private String categoriaSpesa;
 
     /**
