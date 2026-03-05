@@ -74,5 +74,5 @@ public interface EntrataRepository extends JpaRepository<Entrata, Long> {
      * @param pageable oggetto {@link Pageable} contenente i metadati per la selezione delle entrate del db.
      * @return un oggetto {@link Page} contenente le {@link Entrata} disponibili ordinate per data e i metadati di paginazione.
      */
-    Page<Entrata> findaAllByPage(Pageable pageable);
+    Page<Entrata> findAllByPage(Pageable pageable);
 }
