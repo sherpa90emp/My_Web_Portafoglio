@@ -2,6 +2,7 @@ package com.example.backend_my_web_portafoglio.model.dto;
 
 import com.example.backend_my_web_portafoglio.model.entity.Entrata;
 import com.example.backend_my_web_portafoglio.model.entity.Uscita;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,11 +15,14 @@ public class AllTransactionDTO {
     /**
      * Identificativo univoco della transazione, corrispondente all'ID dell'entità di origine ({@link Entrata} o {@link Uscita}).
      */
+    @Positive
     private String id;
 
     /**
      * Importo in entrata o in uscita della transazione.
      */
+    @NotNull(message = "L'importo è obbligatorio")
+    @PositiveOrZero(message = "L'importo deve essere positivo")
     private BigDecimal importo;
 
     /**
@@ -29,6 +33,8 @@ public class AllTransactionDTO {
     /**
      * Data in cui è avvenuta la transazione.
      */
+    @NotNull(message = "La data è obbligatoria")
+    @PastOrPresent(message = "La data non può essere nel futuro")
     private Date data;
 
     /**
@@ -42,6 +48,7 @@ public class AllTransactionDTO {
     /**
      * Indica se la transazione è un'entrata o un'uscita.
      */
+    @NotBlank(message = "Necessario specificare il tipo di transazione")
     private TipoTransazione tipo;
 
     /**
