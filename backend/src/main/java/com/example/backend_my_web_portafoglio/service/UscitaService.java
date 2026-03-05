@@ -118,7 +118,7 @@ public class UscitaService {
     public Page<UscitaDTO> getAllUsciteOrderByDataDescPaginate(int numeroPagina, int quantitaInPagina) {
         Pageable pageable = PageRequest.of(numeroPagina, quantitaInPagina, Sort.by("dataSpesa").descending());
 
-        return uscitaRepository.findAll(pageable)
+        return uscitaRepository.findAllByPage(pageable)
                 .map(uscitaMapper::toDTO);
     }
 }
