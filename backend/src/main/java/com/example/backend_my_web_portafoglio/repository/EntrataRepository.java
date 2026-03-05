@@ -1,7 +1,6 @@
 package com.example.backend_my_web_portafoglio.repository;
 
 import com.example.backend_my_web_portafoglio.model.entity.Entrata;
-import com.example.backend_my_web_portafoglio.model.entity.Uscita;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -72,7 +71,7 @@ public interface EntrataRepository extends JpaRepository<Entrata, Long> {
     /**
      * Recupera una pagina di entrate in base ai parametri di paginazione.
      *
-     * @param pageable oggetto {@link Pageable} contenente i metadati per la selezione delle uscite del db.
+     * @param pageable oggetto {@link Pageable} contenente i metadati per la selezione delle entrate del db.
      * @return un oggetto {@link Page} contenente le {@link Entrata} disponibili ordinate per data e i metadati di paginazione.
      */
     Page<Entrata> findaAllByPage(Pageable pageable);
