@@ -1,6 +1,7 @@
 package com.example.backend_my_web_portafoglio.model.dto;
 
 import com.example.backend_my_web_portafoglio.model.entity.CategoriaSpesa;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -19,6 +20,7 @@ public class CategoriaSpesaDTO {
     /**
      * Nome della categoria.
      */
+    @NotBlank(message = "Necessario specificare la categoria")
     private String categoria;
 
     /**
