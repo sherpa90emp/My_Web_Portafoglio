@@ -3,11 +3,9 @@ package com.example.backend_my_web_portafoglio.controller;
 import com.example.backend_my_web_portafoglio.model.dto.EntrataDTO;
 import com.example.backend_my_web_portafoglio.service.EntrataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,5 +83,26 @@ public class EntrataController {
         }
 
         return ResponseEntity.ok(entrateDTO);
+    }
+
+    /**
+     * Recupera una pagina di entrate dal db, ordinate per data decrescente.
+     *
+     * @param numeroPagina l'indice della pagina da recuperare
+     * @param quantitaPerPagina il numero massimo di elementi per pagina.
+     * @return una ResponseEntity che contiene:
+     * - 200 OK con la pagina contenente le entrate
+     * - 400 Bad Request se i parametri di paginazione non sono validi
+     * - 204 No Content se la pagina è vuota, ovvero non ci sono entrate
+     */
+    public ResponseEntity<Page<EntrataDTO>> getPaginaEntrate(
+            @RequestParam(defaultValue = "0") int numeroPagina,
+            @RequestParam(defaultValue = "10") int quantitaPerPagina
+    ) {
+        if (numeroPagina < 0 || quantitaPerPagina <= 0) return ResponseEntity.badRequest().build();
+
+        Page<EntrataDTO> entrataDTOPage = entrataService.getAllEntrateOrderByDataDescPaginate(numeroPagina, quantitaPerPagina);
+        if (entrataDTOPage.isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(entrataDTOPage);
     }
 }
