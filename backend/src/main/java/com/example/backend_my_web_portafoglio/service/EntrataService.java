@@ -79,8 +79,12 @@ public class EntrataService {
      * @param quantitaInPagina quantità massima di Entrate presenti per singola pagina
      * @return un oggetto {@link Page} contenente la {@link EntrataDTO} disponibili ordinate per data e metadati di paginazione.
      */
-    public Page<EntrataDTO> getAllEntrateOrderByDataDescPaginate(int numeroPagina, int quantitaInPagina) {
-        Pageable pageable = PageRequest.of(numeroPagina, quantitaInPagina, Sort.by("dataEntrata").descending());
+    public Page<EntrataDTO> getAllEntratePaginateOrderBy(int numeroPagina, int quantitaInPagina, String campo, String ordine) {
+        Sort sort = ordine.equalsIgnoreCase("asc")
+                ? Sort.by(campo).ascending()
+                : Sort.by(campo).descending();
+
+        Pageable pageable = PageRequest.of(numeroPagina, quantitaInPagina, sort);
 
         return entrataRepository.findAllByPage(pageable)
                 .map(entrataMapper::toDTO);
