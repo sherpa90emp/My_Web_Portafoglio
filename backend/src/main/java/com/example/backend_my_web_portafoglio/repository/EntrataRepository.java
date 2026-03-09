@@ -3,6 +3,7 @@ package com.example.backend_my_web_portafoglio.repository;
 import com.example.backend_my_web_portafoglio.model.entity.Entrata;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -33,32 +34,11 @@ public interface EntrataRepository extends JpaRepository<Entrata, Long> {
     List<Entrata> findByDataEntrataBetween(Date start, Date end);
 
     /**
-     * Recupera tutte le entrate ordinate in modo crescente in base alla data.
+     * Recupera tutte le entrate secondo l'oggetto passato.
      *
-     * @return lista di tutte le entrate ordinate secondo la loro data in ordine crescente.
+     * @return lista di tutte le entrate ordinate secondo l'oggetto passato.
      */
-    List<Entrata> findAllByOrderByDataEntrataAsc();
-
-    /**
-     * Recupera tutte le entrate ordinate in modo decrescente in base alla data.
-     *
-     * @return lista di tutte le entrate ordinate secondo la loro data in ordine decrescente.
-     */
-    List<Entrata> findAllByOrderByDataEntrataDesc();
-
-    /**
-     * Recupera tutte le entrate ordinate in modo decrescente in base all'importo.
-     *
-     * @return lista di tutte le entrate ordinate secondo la grandezza dell'importo.
-     */
-    List<Entrata> findAllByOrderByImportoDesc();
-
-    /**
-     * Recupera tutte le entrate ordinate in modo ascendente in base all'importo.
-     *
-     * @return lista di tutte le entrate ordinate secondo la grandezza dell'importo.
-     */
-    List<Entrata> findAllByOrderByImportoAsc();
+    List<Entrata> findAll(Sort sort);
 
     /**
      * Effettua una somma di tutti gli importi presenti nella tabella.
