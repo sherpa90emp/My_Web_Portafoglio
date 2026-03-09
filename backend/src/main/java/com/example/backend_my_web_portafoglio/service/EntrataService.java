@@ -47,52 +47,20 @@ public class EntrataService {
     }
 
     /**
-     * Recupera tutte le entrate presenti e le converte in DTO, ordinate per data in ordine crescente.
+     * Recupera tutte le entrate presenti e le converte in DTO, ordinate per i campi passati.
      *
-     * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili ordinate per data.
+     * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili ordinate attraverso l'oggetto sort.
      */
-    public List<EntrataDTO> getAllEntrateOrderByDataAsc() {
-        return entrataRepository.findAllByOrderByDataEntrataAsc()
+    public List<EntrataDTO> getAllEntrateOrderBy(String campo, String ordine) {
+        Sort sort = ordine.equalsIgnoreCase("asc")
+                ? Sort.by(campo).ascending()
+                : Sort.by(campo).descending();
+
+        return entrataRepository.findAll(sort)
                 .stream()
                 .map(entrataMapper::toDTO)
                 .toList();
     }
-
-    /**
-     * Recupera tutte le entrate presenti e le converte in DTO, ordinate per data in ordine decrescente.
-     *
-     * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili ordinate per data.
-     */
-    public List<EntrataDTO> getAllEntrateOrderByDataDesc() {
-        return entrataRepository.findAllByOrderByDataEntrataDesc()
-                .stream()
-                .map(entrataMapper::toDTO)
-                .toList();
-    }
-
-    /**
-     * Recupera tutte le entrate presenti e le converte in DTO, ordinate per l'importo in ordine decrescente.
-     *
-     * @return una lista do {@link EntrataDTO} contenente tutte le entrate disponibili ordinate per importo.
-     */
-    public List<EntrataDTO> getAllEntrateOrderByImportoDesc() {
-        return entrataRepository.findAllByOrderByImportoDesc()
-                .stream()
-                .map(entrataMapper::toDTO)
-                .toList();
-    };
-
-    /**
-     * Recupera tutte le entrate presenti e le converte in DTO, ordinate per l'importo in ordine ascendente.
-     *
-     * @return una lista do {@link EntrataDTO} contenente tutte le entrate disponibili ordinate per importo.
-     */
-    public List<EntrataDTO> getAllEntrateOrderByImportoAsc() {
-        return entrataRepository.findAllByOrderByImportoAsc()
-                .stream()
-                .map(entrataMapper::toDTO)
-                .toList();
-    };
 
     /**
      * Recupera la somma di tutte le entrate presenti nel DB.
