@@ -53,7 +53,7 @@ public class UscitaDTO {
      * @param id             identificativo dell'uscita
      * @param dataSpesa      Data in cui è avvenuta la registrazione o è stato effettuato il pagamento
      * @param importo        importo dell'uscita
-     * @param descrizione    descrizione del pagamento effettuato
+     * @param descrizione   descrizione del pagamento effettuato
      * @param categoriaSpesa categoria della spesa
      */
     public UscitaDTO(Long id, Date dataSpesa, BigDecimal importo, String descrizione, String categoriaSpesa) {
