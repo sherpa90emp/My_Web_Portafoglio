@@ -47,8 +47,8 @@ public class EntrataDTO {
     /**
      * Costruttore usato per inizializzare il DTO con tutti i valori disponibili.
      *
-     * @param id          identificativo dell'entrata
-     * @param importo     importo ricevuto
+     * @param id identificativo dell'entrata
+     * @param importo importo ricevuto
      * @param descrizione descrizione relativa all'entrata ricevuta
      * @param dataEntrata data in cui è avvenuta la ricezione o registrazione dell'entrata
      */
