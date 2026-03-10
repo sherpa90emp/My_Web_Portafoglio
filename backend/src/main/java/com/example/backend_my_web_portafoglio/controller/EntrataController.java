@@ -2,12 +2,14 @@ package com.example.backend_my_web_portafoglio.controller;
 
 import com.example.backend_my_web_portafoglio.model.dto.EntrataDTO;
 import com.example.backend_my_web_portafoglio.service.EntrataService;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/entrate")
+@Validated
 public class EntrataController {
     @Autowired
     private EntrataService entrataService;
@@ -45,44 +48,18 @@ public class EntrataController {
      * @return una ResponseEntity che contiene:
      * - 200 OK con la lista di tutte le entrate ordinate
      * - 204 No Content se la lista è vuota, ovvero non esistono entrate
-     * - 400 Bad Request se il mapping è errato
+     * - 400 Bad Request se il campo o la direzione di ordinamento non sono tra quelli permessi.
      */
     @GetMapping("/{campo}/{ordine}")
     public ResponseEntity<List<EntrataDTO>> getAllEntrateOrder(
-            @PathVariable String campo,
-            @PathVariable String ordine
+            @PathVariable @Pattern(regexp = "dataEntrata|importo") String campo,
+            @PathVariable @Pattern(regexp = "asc|desc") String ordine
     ) {
-        List<EntrataDTO> entrateDTO;
+        List<EntrataDTO> entrateDTO = entrataService.getAllEntrateOrderBy(campo, ordine);
 
-        boolean asc = "asc".equalsIgnoreCase(ordine);
-        boolean desc = "desc".equalsIgnoreCase(ordine);
-
-        if (!asc && !desc) return ResponseEntity.badRequest().build();
-
-        switch (campo) {
-            case "dataEntrata":
-                if (asc) {
-                    entrateDTO = entrataService.getAllEntrateOrderByDataAsc();
-                } else {
-                    entrateDTO = entrataService.getAllEntrateOrderByDataDesc();
-                }
-                break;
-            case "importo":
-                if (asc) {
-                    entrateDTO = entrataService.getAllEntrateOrderByImportoAsc();
-                } else {
-                    entrateDTO = entrataService.getAllEntrateOrderByImportoDesc();
-                }
-                break;
-            default:
-                return ResponseEntity.badRequest().build();
-        }
-
-        if (entrateDTO.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(entrateDTO);
+        return entrateDTO.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok(entrateDTO);
     }
 
     /**
@@ -95,12 +72,11 @@ public class EntrataController {
      * - 400 Bad Request se i parametri di paginazione non sono validi
      * - 204 No Content se la pagina è vuota, ovvero non ci sono entrate
      */
+    @GetMapping("/page")
     public ResponseEntity<Page<EntrataDTO>> getPaginaEntrate(
-            @RequestParam(defaultValue = "0") int numeroPagina,
-            @RequestParam(defaultValue = "10") int quantitaPerPagina
+            @RequestParam(defaultValue = "0") @Min(0) int numeroPagina,
+            @RequestParam(defaultValue = "10") @Min(1) int quantitaPerPagina
     ) {
-        if (numeroPagina < 0 || quantitaPerPagina <= 0) return ResponseEntity.badRequest().build();
-
         Page<EntrataDTO> entrataDTOPage = entrataService.getAllEntrateOrderByDataDescPaginate(numeroPagina, quantitaPerPagina);
         if (entrataDTOPage.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(entrataDTOPage);
