@@ -34,25 +34,10 @@ public interface EntrataRepository extends JpaRepository<Entrata, Long> {
     List<Entrata> findByDataEntrataBetween(Date start, Date end);
 
     /**
-     * Recupera tutte le entrate secondo l'oggetto passato.
-     *
-     * @return lista di tutte le entrate ordinate secondo l'oggetto passato.
-     */
-    List<Entrata> findAll(Sort sort);
-
-    /**
      * Effettua una somma di tutti gli importi presenti nella tabella.
      *
      * @return un {@code BigDecimal} rappresentante la somma totale di tutti gli importi.
      */
     @Query("SELECT SUM(e.importo) FROM Entrata e")
     BigDecimal getSommaTotaleImportiEntrate();
-
-    /**
-     * Recupera una pagina di entrate in base ai parametri di paginazione.
-     *
-     * @param pageable oggetto {@link Pageable} contenente i metadati per la selezione delle entrate del db.
-     * @return un oggetto {@link Page} contenente le {@link Entrata} disponibili ordinate per data e i metadati di paginazione.
-     */
-    Page<Entrata> findAllByPage(Pageable pageable);
 }
