@@ -47,22 +47,6 @@ public class EntrataService {
     }
 
     /**
-     * Recupera tutte le entrate presenti e le converte in DTO, ordinate per i campi passati.
-     *
-     * @return una lista di {@link EntrataDTO} contenente tutte le entrate disponibili ordinate attraverso l'oggetto sort.
-     */
-    public List<EntrataDTO> getAllEntrateOrderBy(String campo, String ordine) {
-        Sort sort = ordine.equalsIgnoreCase("asc")
-                ? Sort.by(campo).ascending()
-                : Sort.by(campo).descending();
-
-        return entrataRepository.findAll(sort)
-                .stream()
-                .map(entrataMapper::toDTO)
-                .toList();
-    }
-
-    /**
      * Recupera la somma di tutte le entrate presenti nel DB.
      *
      * @return un {@code BigDecimal} rappresentante la somma totale degli importi;
@@ -73,11 +57,13 @@ public class EntrataService {
     }
 
     /**
-     * Recupera una pagina di entrate presenti convertite in DTO, ordinate per data in ordine decrescente.
+     * Recupera una pagina di entrate ordinate in base ai parametri forniti.
      *
-     * @param numeroPagina numero della pagina da recuperare
-     * @param quantitaInPagina quantità massima di Entrate presenti per singola pagina
-     * @return un oggetto {@link Page} contenente la {@link EntrataDTO} disponibili ordinate per data e metadati di paginazione.
+     * @param numeroPagina l'indice della pagina da recuperare
+     * @param quantitaInPagina il numero massimo di elementi per pagina
+     * @param campo il parametro sulla base del quale effettuare l'ordinamento
+     * @param ordine direzione dell'ordinamento, può essere ascendente o decrescente
+     * @return ritorna una {@code Page} di {@link EntrataDTO} mappata dell'entità
      */
     public Page<EntrataDTO> getAllEntratePaginateOrderBy(int numeroPagina, int quantitaInPagina, String campo, String ordine) {
         Sort sort = ordine.equalsIgnoreCase("asc")
@@ -86,7 +72,7 @@ public class EntrataService {
 
         Pageable pageable = PageRequest.of(numeroPagina, quantitaInPagina, sort);
 
-        return entrataRepository.findAllByPage(pageable)
+        return entrataRepository.findAll(pageable)
                 .map(entrataMapper::toDTO);
     }
 }
