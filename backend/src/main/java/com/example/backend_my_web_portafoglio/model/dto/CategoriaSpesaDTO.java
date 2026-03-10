@@ -32,7 +32,7 @@ public class CategoriaSpesaDTO {
     /**
      * Costruttore usato per inizializzare il DTO con tutti i valori disponibili.
      *
-     * @param id        identificativo della categoria di spesa
+     * @param id identificativo della categoria di spesa
      * @param categoria nome della categoria
      */
     public CategoriaSpesaDTO(Long id, String categoria) {
