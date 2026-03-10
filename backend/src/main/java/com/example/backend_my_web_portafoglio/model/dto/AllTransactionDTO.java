@@ -40,8 +40,7 @@ public class AllTransactionDTO {
     /**
      * Categoria associata alla transazione.
      *
-     * È valorizzata solo nel caso di una {@link Uscita}
-     * vale {@code null} se la transazione è una {@link Entrata}.
+     * È valorizzata solo nel caso di una {@link Uscita} vale {@code null} se la transazione è una {@link Entrata}.
      */
     private String categoria;
 
