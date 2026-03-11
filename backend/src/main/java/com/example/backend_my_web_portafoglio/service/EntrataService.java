@@ -63,7 +63,7 @@ public class EntrataService {
      * @param quantitaInPagina il numero massimo di elementi per pagina
      * @param campo il parametro sulla base del quale effettuare l'ordinamento
      * @param ordine direzione dell'ordinamento, può essere ascendente o decrescente
-     * @return ritorna una {@code Page} di {@link EntrataDTO} mappata dell'entità
+     * @return una {@code Page} di {@link EntrataDTO} mappata dell'entità
      */
     public Page<EntrataDTO> getAllEntratePaginateOrderBy(int numeroPagina, int quantitaInPagina, String campo, String ordine) {
         Sort sort = ordine.equalsIgnoreCase("asc")

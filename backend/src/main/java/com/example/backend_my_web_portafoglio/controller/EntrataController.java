@@ -37,6 +37,17 @@ public class EntrataController {
         return ResponseEntity.ok(entrateDTO);
     }
 
+    /**
+     * Recupera una pagina di entrate ordinate in base ai parametri forniti.
+     *
+     * @param numeroPagina l'indice della pagina da recuperare
+     * @param quantitaPagina il numero massimo di elementi per pagina
+     * @param campo il parametro sulla base del quale effettuare l'ordinamento
+     * @param ordine direzione dell'ordinamento, può essere ascendente o decrescente
+     * @return una ResponseEntity che contiene:
+     * - 200 OK con la lista di tutte le entrate
+     * - 204 No Content se la lista è vuota, ovvero non esistono entrate
+     */
     @GetMapping("/page")
     public ResponseEntity<Page<EntrataDTO>> getPaginaEntrate(
             @RequestParam(defaultValue = "0") @Min(0) int numeroPagina,
