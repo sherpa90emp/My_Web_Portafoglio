@@ -47,78 +47,22 @@ public class UscitaService {
     }
 
     /**
-     * Recupera tutte le uscite comprese in uno specifico intervallo di tempo e le converte in DTO.
+     * Recupera una pagina di uscite ordinate in base ai parametri forniti.
      *
-     * @param dataInizio data di inizio intervallo
-     * @param dataFine   data di fine intervallo
-     * @return lista contenente le {@link UscitaDTO} comprese nell'intervallo di tempo.
+     * @param numeroPagina l'indice della pagina da recuperare
+     * @param quantitaInPagina il numero massimo di elementi per pagina
+     * @param campo il parametro sulla base del quale effettuare l'ordinamento
+     * @param ordine direzione dell'ordinamento, può essere ascendente o decrescente
+     * @return una {@code Page} di {@link UscitaDTO} mappata dell'entità {@link Uscita}
      */
-    public List<UscitaDTO> findByDataSpesaBetween(Date dataInizio, Date dataFine) {
-        return uscitaRepository.findByDataSpesaBetween(dataInizio, dataFine)
-                .stream()
-                .map(uscitaMapper::toDTO)
-                .toList();
-    }
+    public Page<UscitaDTO> getAllUscitePaginateOrderBy(int numeroPagina, int quantitaInPagina, String campo, String ordine) {
+        Sort sort = ordine.equalsIgnoreCase("asc")
+                ? Sort.by(campo).ascending()
+                : Sort.by(campo).descending();
 
-    /**
-     * Recupera tutte le uscite presenti e le converte in DTO, ordinate per data in ordine crescente.
-     *
-     * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per data.
-     */
-    public  List<UscitaDTO> getAllUsciteOrderByDataAsc() {
-        return uscitaRepository.findAllByOrderByDataSpesaAsc()
-                .stream()
-                .map(uscitaMapper::toDTO)
-                .toList();
-    }
+        Pageable pageable = PageRequest.of(numeroPagina, quantitaInPagina, sort);
 
-    /**
-     * Recupera tutte le uscite presenti e le converte in DTO, ordinate per data in ordine decrescente.
-     *
-     * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per data.
-     */
-    public List<UscitaDTO> getAllUsciteOrderByDataDesc() {
-        return uscitaRepository.findAllByOrderByDataSpesaDesc()
-                .stream()
-                .map(uscitaMapper::toDTO)
-                .toList();
-    }
-
-    /**
-     * Recupera tutte le uscite presenti e le converte in DTO, ordinate per importo in ordine crescente.
-     *
-     * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per importo.
-     */
-    public List<UscitaDTO> getAllUsciteOrderByImportoAsc() {
-        return uscitaRepository.findAllByOrderByImportoAsc()
-                .stream()
-                .map(uscitaMapper::toDTO)
-                .toList();
-    }
-
-    /**
-     * Recupera tutte le uscite presenti e le converte in DTO, ordinate per importo in ordine decrescente.
-     *
-     * @return una lista di {@link UscitaDTO} contenente tutte le uscite disponibili ordinate per importo.
-     */
-    public List<UscitaDTO> getAllUsciteOrderByImportoDesc() {
-        return uscitaRepository.findAllByOrderByImportoDesc()
-                .stream()
-                .map(uscitaMapper::toDTO)
-                .toList();
-    }
-
-    /**
-     * Recupera una pagina di uscite presenti convertite in DTO, ordinate per data in ordine decrescente.
-     *
-     * @param numeroPagina numero della pagina da recuperare
-     * @param quantitaInPagina quantità massima di Uscite presenti per singola pagina
-     * @return un oggetto {@link Page} contenente le {@link UscitaDTO} disponibili ordinate per data e i metadati di paginazione.
-     */
-    public Page<UscitaDTO> getAllUsciteOrderByDataDescPaginate(int numeroPagina, int quantitaInPagina) {
-        Pageable pageable = PageRequest.of(numeroPagina, quantitaInPagina, Sort.by("dataSpesa").descending());
-
-        return uscitaRepository.findAllByPage(pageable)
+        return uscitaRepository.findAll(pageable)
                 .map(uscitaMapper::toDTO);
     }
 }
