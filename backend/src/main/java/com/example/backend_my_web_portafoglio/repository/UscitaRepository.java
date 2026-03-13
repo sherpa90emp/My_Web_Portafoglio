@@ -28,49 +28,4 @@ public interface UscitaRepository extends JpaRepository<Uscita, Long> {
      * @return lista delle spese che contengono la stringa nella descrizione.
      */
     List<Uscita> findByDescrizioneContaining(String descrizione);
-
-    /**
-     * Recupera tutte le spese in uno specifico intervallo di tempo.
-     *
-     * @param start data di inizio intervallo
-     * @param end   data di fine intervallo
-     * @return lista di spese comprese nell'intervallo di tempo indicato.
-     */
-    List<Uscita> findByDataSpesaBetween(Date start, Date end);
-
-    /**
-     * Recupera tutte le uscite ordinate in modo crescente in base all'importo.
-     *
-     * @return lista di tutte le uscite ordinate secondo la grandezza dell'importo.
-     */
-    List<Uscita> findAllByOrderByImportoAsc();
-
-    /**
-     * Recupera tutte le uscite ordinate in modo decrescente in base all'importo.
-     *
-     * @return lista di tutte le uscite ordinate secondo la grandezza dell'importo.
-     */
-    List<Uscita> findAllByOrderByImportoDesc();
-
-    /**
-     * Recupera tutte le uscite ordinate in modo decrescente in base alla data.
-     *
-     * @return lista di tutte le uscite ordinate secondo la loro data in ordine decrescente.
-     */
-    List<Uscita> findAllByOrderByDataSpesaDesc();
-
-    /**
-     * Recupera tutte le uscite ordinate in modo crescente in base alla data.
-     *
-     * @return lista di tutte le uscite ordinate secondo la loro data in ordine crescente.
-     */
-    List<Uscita> findAllByOrderByDataSpesaAsc();
-
-    /**
-     * Recupera una pagina di uscite in base ai parametri di paginazione.
-     *
-     * @param pageable oggetto {@link Pageable} contenente i metadati per la selezione delle uscite del db.
-     * @return un oggetto {@link Page} contenente le {@link Uscita} disponibili ordinate per data e i metadati di paginazione.
-     */
-    Page<Uscita> findAllByPage(Pageable pageable);
 }
