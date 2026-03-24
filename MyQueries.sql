@@ -85,3 +85,11 @@ FROM
     `entrate` AS e
 ORDER BY
     `data` DESC;
+
+
+CREATE VIEW vista_movimenti AS
+SELECT
+    CONCAT('U', id_spesa) AS id_univoco_spesa, data_spesa AS data, importo, descrizione, id_categoria AS categoria, 'USCITA' AS tipo FROM spese_effettuate
+UNION ALL
+SELECT
+    CONCAT('E',id_entrate) AS id_univoco_entrata, data_entrata AS data, importo, descrizione, NULL AS categoria, 'ENTRATA' AS tipo FROM entrate
