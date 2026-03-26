@@ -93,3 +93,25 @@ SELECT
 UNION ALL
 SELECT
     CONCAT('E',id_entrate) AS id_univoco, data_entrata AS data, importo, descrizione, NULL AS categoria, 'ENTRATA' AS tipo FROM entrate
+
+CREATE or REPLACE VIEW vista_movimenti AS
+SELECT 
+	CONCAT('E', e.id) AS id_univoco,
+    e.data_entrata AS data,
+    e.importo,
+    e.descrizione,
+    'ENTRATA' AS tipo,
+    NULL AS categoria
+FROM entrate e
+
+UNION ALL
+
+SELECT
+	CONCAT('U', s.id) AS id_univoco,
+    s.data_spesa AS data,
+    s.importo,
+    s.descrizione,
+    'USCITA' AS tipo,
+    c.categoria AS categoria
+FROM spese_effettuate s
+LEFT JOIN categorie_spesa c ON s.id_categoria = c.id_categoria
