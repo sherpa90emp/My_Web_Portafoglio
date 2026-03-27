@@ -19,7 +19,7 @@ public class Entrata {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_entrate")
+    @Column(name = "id_entrata")
     private Long id;
 
     /**
