@@ -1,5 +1,6 @@
 package com.example.backend_my_web_portafoglio.model.entity;
 
+import com.example.backend_my_web_portafoglio.model.enums.TipoTransazione;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Immutable;
 
@@ -11,7 +12,7 @@ import java.util.Date;
 @Immutable
 public class Movimento {
     /**
-     * Identificativo univoco della transazione.
+     * Identificativo univoco del movimento.
      * Mappa la colonna {@code id_univoco}.
      */
     @Id
@@ -19,7 +20,7 @@ public class Movimento {
     private String id;
 
     /**
-     * Data in cui è stata effettuata/registrata la transazione.
+     * Data in cui è stata effettuato/registrato il movimento.
      * Mappa la colonna {@code data}.
      */
     @Temporal(TemporalType.DATE)
@@ -27,24 +28,24 @@ public class Movimento {
     private Date data;
 
     /**
-     * Importo della transazione.
+     * Importo del movimento.
      */
     private BigDecimal importo;
 
     /**
-     * Descrizione della transazione, utile per specificare la natura o la provenienza della transazione.
+     * Descrizione del movimento, utile per specificare la natura o la provenienza del movimento.
      */
     private String descrizione;
 
     /**
-     * Categoria della transazione, utile per capire la natura della spesa effettuata.
+     * Categoria del movimento, utile per capire la natura della spesa effettuata.
      */
     private String categoria;
 
     /**
-     * Tipo della transazione, utile per capire se è una spesa o un'entrata.
+     * Tipo del movimento, utile per capire se è una spesa o un'entrata.
      */
-    private String tipo;
+    private TipoTransazione tipo;
 
     public String getId() {
         return id;
@@ -86,11 +87,11 @@ public class Movimento {
         this.categoria = categoria;
     }
 
-    public String getTipo() {
+    public TipoTransazione getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoTransazione tipo) {
         this.tipo = tipo;
     }
 }
