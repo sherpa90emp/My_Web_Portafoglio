@@ -39,6 +39,6 @@ export class EntrataService {
         .set('quantitaPagina', size)
         .set('campo', campo)
         .set('ordine', ordine);
-      return this.http.get<Page<EntrataDTO>>(this.apiUrl, { params });
+      return this.http.get<Page<EntrataDTO>>(`${this.apiUrl}/page`, { params });
     }
 }
