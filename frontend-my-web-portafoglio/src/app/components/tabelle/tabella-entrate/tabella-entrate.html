@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (entrata of entrate; track entrata.id) {
+    @for (entrata of paginaEntrate?.content; track entrata.id) {
         <tr>
             <td>{{entrata.dataEntrata | date: 'd/M/yyyy'}}</td>
             <td>{{entrata.importo | currency: 'EUR'}}</td>
