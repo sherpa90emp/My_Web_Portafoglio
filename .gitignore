@@ -31,3 +31,4 @@ Thumbs.db
 .env
 backup.sql
 mysql_data/
+my_web_portafoglio.sql
