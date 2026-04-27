@@ -4,10 +4,11 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Arrow } from '../../arrow/arrow';
 import { Subject, switchMap } from 'rxjs';
 import { Page } from '../../../service/page-model/page';
+import { Paginazione } from "../../paginazione/paginazione";
 
 @Component({
   selector: 'app-tabella-entrate',
-  imports: [CurrencyPipe, DatePipe, Arrow],
+  imports: [CurrencyPipe, DatePipe, Arrow, Paginazione],
   templateUrl: './tabella-entrate.html',
   styleUrl: './tabella-entrate.css',
 })
