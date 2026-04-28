@@ -39,7 +39,7 @@ public class UscitaController {
      * Recupera una pagina di uscite dal db, ordinate in base ai parametri forniti.
      *
      * @param numeroPagina l'indice della pagina da recuperare
-     * @param quantitaPerPagina Il numero massimo di elementi per pagina.
+     * @param quantitaPagina Il numero massimo di elementi per pagina.
      * @param campo il parametro sulla base del quale effettuare l'ordinamento
      * @param ordine direzione dell'ordinamento, può essere ascendente o decrescente
      * @return una ResponseEntity che contiene:
@@ -49,11 +49,11 @@ public class UscitaController {
     @GetMapping("/page")
     public ResponseEntity<Page<UscitaDTO>> getPaginaUscite(
             @RequestParam(defaultValue = "0") @Min(0) int numeroPagina,
-            @RequestParam(defaultValue = "10") @Min(1) int quantitaPerPagina,
-            @RequestParam(defaultValue = "dataEntrata") @Pattern(regexp = "dataEntrata|importo") String campo,
+            @RequestParam(defaultValue = "10") @Min(1) int quantitaPagina,
+            @RequestParam(defaultValue = "dataSpesa") @Pattern(regexp = "dataSpesa|importo") String campo,
             @RequestParam(defaultValue = "desc") @Pattern(regexp = "asc|desc") String ordine
     ) {
-        Page<UscitaDTO> uscitaDTOPage = uscitaService.getAllUscitePaginateOrderBy(numeroPagina, quantitaPerPagina, campo, ordine);
+        Page<UscitaDTO> uscitaDTOPage = uscitaService.getAllUscitePaginateOrderBy(numeroPagina, quantitaPagina, campo, ordine);
 
         return uscitaDTOPage.isEmpty()
                 ? ResponseEntity.noContent().build()
