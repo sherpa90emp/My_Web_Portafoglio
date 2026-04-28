@@ -17,7 +17,7 @@ export class TabellaEntrate implements OnInit {
   
   paginaEntrate: Page<EntrataDTO> | null = null;
   numeroPagina = 0;
-  quantitaPagina = 20;
+  quantitaPagina = 18;
   campo: 'dataEntrata' | 'importo' = 'dataEntrata';
   ordine: 'asc' | 'desc' = 'desc';
 
