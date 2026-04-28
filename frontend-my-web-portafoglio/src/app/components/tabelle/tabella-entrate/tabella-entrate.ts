@@ -21,8 +21,6 @@ export class TabellaEntrate implements OnInit {
   campo: 'dataEntrata' | 'importo' = 'dataEntrata';
   ordine: 'asc' | 'desc' = 'desc';
 
-
-
   constructor(private entrataService: EntrataService) {}
 
   private sort$ = new Subject<{ campo: 'dataEntrata' | 'importo'; direzione: 'asc' | 'desc' }>();
