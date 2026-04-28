@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (uscita of uscite; track uscita.id) {
+    @for (uscita of paginaUscite?.content; track uscita.id) {
         <tr>
             <td>{{uscita.dataSpesa | date: 'd/M/yyyy'}}</td>
             <td>{{uscita.importo | currency: 'EUR'}}</td>
