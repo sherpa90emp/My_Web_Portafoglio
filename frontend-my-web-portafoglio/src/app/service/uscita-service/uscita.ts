@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Page } from '../page-model/page';
 
 export interface UscitaDTO {
   id: number;
@@ -9,7 +10,6 @@ export interface UscitaDTO {
   descrizione: string;
   categoriaSpesa: string;
 }
-
 @Injectable({
   providedIn: 'root',
 })
@@ -27,5 +27,19 @@ export class UscitaService {
     ordine: 'asc' | 'desc'
   ): Observable<UscitaDTO[]> {
     return this.http.get<UscitaDTO[]>(`${this.apiUrl}/${campo}/${ordine}`);
+  }
+
+  getUscitePaginate(
+    page: number,
+    size: number,
+    campo: string,
+    ordine: 'asc' | 'desc'
+  ): Observable<Page<UscitaDTO>> {
+    const params = new HttpParams()
+      .set('numeroPagina', page)
+      .set('quantitaPagina', size)
+      .set('campo', campo)
+      .set('ordine', ordine);
+    return this.http.get<Page<UscitaDTO>>(`${this.apiUrl}/page`, { params });
   }
 }
