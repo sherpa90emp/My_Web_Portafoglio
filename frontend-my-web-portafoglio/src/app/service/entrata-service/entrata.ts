@@ -16,29 +16,29 @@ export class EntrataService {
   private apiUrl = 'http://localhost:8081/api/entrate';
   
   constructor(private http: HttpClient) {}
-  
-    getEntrate(): Observable<EntrataDTO[]> {
-      return this.http.get<EntrataDTO[]>(this.apiUrl);
-    }
 
-    getEntrateOrdinate(
-      campo: string,
-      ordine: 'asc' | 'desc'
-    ): Observable<EntrataDTO[]> {
-      return this.http.get<EntrataDTO[]>(`${this.apiUrl}/${campo}/${ordine}`)
-    }
+  getEntrate(): Observable<EntrataDTO[]> {
+    return this.http.get<EntrataDTO[]>(this.apiUrl);
+  }
 
-    getPaginaEntrate(
-      page: number, 
-      size: number,
-      campo: string,
-      ordine: 'asc' | 'desc'
-    ): Observable<Page<EntrataDTO>> {
-      const params = new HttpParams()
-        .set('numeroPagina', page)
-        .set('quantitaPagina', size)
-        .set('campo', campo)
-        .set('ordine', ordine);
-      return this.http.get<Page<EntrataDTO>>(`${this.apiUrl}/page`, { params });
-    }
+  getEntrateOrdinate(
+    campo: string,
+    ordine: 'asc' | 'desc'
+  ): Observable<EntrataDTO[]> {
+    return this.http.get<EntrataDTO[]>(`${this.apiUrl}/${campo}/${ordine}`)
+  }
+
+  getPaginaEntrate(
+    page: number, 
+    size: number,
+    campo: string,
+    ordine: 'asc' | 'desc'
+  ): Observable<Page<EntrataDTO>> {
+    const params = new HttpParams()
+      .set('numeroPagina', page)
+      .set('quantitaPagina', size)
+      .set('campo', campo)
+      .set('ordine', ordine);
+    return this.http.get<Page<EntrataDTO>>(`${this.apiUrl}/page`, { params });
+  }
 }
