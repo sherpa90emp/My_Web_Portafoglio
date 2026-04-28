@@ -12,7 +12,7 @@ import { Paginazione } from "../../paginazione/paginazione";
   styleUrl: './tabella-uscite.css',
 })
 export class Tabella implements OnInit {
-  @Input() uscite: UscitaDTO[] = [];
+  uscite: UscitaDTO[] = [];
 
   constructor(private uscitaService: UscitaService) {}
 
