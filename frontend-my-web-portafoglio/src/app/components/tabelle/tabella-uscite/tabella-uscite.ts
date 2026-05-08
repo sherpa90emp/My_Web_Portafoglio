@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { UscitaDTO, UscitaService } from '../../../service/uscita-service/uscita';
 import { Arrow } from '../../arrow/arrow';
@@ -25,8 +25,14 @@ export class Tabella implements OnInit {
 
   private sort$ = new Subject<{ campo: 'dataSpesa' | 'importo'; direzione: 'asc' | 'desc' }>();
 
+  @ViewChild('tabellaUscite') tabellaUscite!: ElementRef;
+
   ngOnInit(): void {
     this.caricaUscitePaginate();    
+  }
+
+  ngAfterViewInit(): void {
+    this.calcolaQuantitaPagina();
   }
 
   ordina(campo: 'dataSpesa' | 'importo', direzione: 'asc' | 'desc') {
@@ -58,5 +64,11 @@ export class Tabella implements OnInit {
         next: (data) => (this.paginaUscite = data),
         error: (error) => console.error('Errore nel caricamento dei dati', error),
       });
+  }
+
+  calcolaQuantitaPagina(): void {
+    const altezzaTabella = this.tabellaUscite.nativeElement.clientHeight;
+    const altezzaRiga = 41;
+    this.quantitaPagina = Math.max(10, Math.floor(altezzaTabella / altezzaRiga));
   }
 }
