@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { UscitaDTO, UscitaService } from '../../../service/uscita-service/uscita';
 import { Arrow } from '../../arrow/arrow';
@@ -12,7 +12,7 @@ import { Page } from '../../../service/page-model/page';
   templateUrl: './tabella-uscite.html',
   styleUrl: './tabella-uscite.css',
 })
-export class Tabella implements OnInit {
+export class Tabella implements OnInit, AfterViewInit {
   uscite: UscitaDTO[] = [];
 
   paginaUscite: Page<UscitaDTO> | null = null;
@@ -28,11 +28,12 @@ export class Tabella implements OnInit {
   @ViewChild('tabellaUscite') tabellaUscite!: ElementRef;
 
   ngOnInit(): void {
-    this.caricaUscitePaginate();    
+       
   }
 
   ngAfterViewInit(): void {
     this.calcolaQuantitaPagina();
+    this.caricaUscitePaginate();
   }
 
   ordina(campo: 'dataSpesa' | 'importo', direzione: 'asc' | 'desc') {
