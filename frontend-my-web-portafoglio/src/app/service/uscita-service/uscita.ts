@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Page } from '../page-model/page';
+import { environment } from '../../../environments/environment';
 
 export interface UscitaDTO {
   id: number;
@@ -14,7 +15,7 @@ export interface UscitaDTO {
   providedIn: 'root',
 })
 export class UscitaService {
-  private apiUrl = 'http://localhost:8081/api/uscite';
+  private apiUrl = `${environment.apiUrl}/api/uscite`;
 
   constructor(private http: HttpClient) {}
 

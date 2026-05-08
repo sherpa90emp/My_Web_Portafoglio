@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface AllTransactionDTO {
   id: number;
@@ -14,7 +15,7 @@ export interface AllTransactionDTO {
   providedIn: 'root',
 })
 export class AllTransactionService {
-  private apiUrl = "http://localhost:8081/api/alltransaction";
+  private apiUrl = `${environment.apiUrl}/api/alltransaction`;
 
   constructor(private http: HttpClient) {}
 

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Page } from '../page-model/page';
+import { environment } from '../../../environments/environment';
 
 export interface EntrataDTO {
   id: number;
@@ -13,7 +14,7 @@ export interface EntrataDTO {
   providedIn: 'root',
 })
 export class EntrataService {
-  private apiUrl = 'http://localhost:8081/api/entrate';
+  private apiUrl = `${environment.apiUrl}/api/entrate`;
   
   constructor(private http: HttpClient) {}
 
