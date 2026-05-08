@@ -33,3 +33,14 @@ services:
       - "80:80"
     depends_on:
       - backend
+  
+  frontend-dev:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - ./frontend-my-web-portafoglio:/app
+    ports:
+      - "4200:4200"
+    command: sh -c "npm install && npx ng serve --host 0.0.0.0"
+    depends_on:
+      - backend
