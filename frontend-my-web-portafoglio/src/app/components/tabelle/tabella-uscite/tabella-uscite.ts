@@ -17,7 +17,7 @@ export class Tabella implements OnInit, AfterViewInit {
 
   paginaUscite: Page<UscitaDTO> | null = null;
   numeroPagina = 0;
-  quantitaPagina = 18;
+  quantitaPagina = 27;
   campo: 'dataSpesa' | 'importo' = 'dataSpesa';
   ordine: 'asc' | 'desc' = 'desc';
 
@@ -28,12 +28,11 @@ export class Tabella implements OnInit, AfterViewInit {
   @ViewChild('tabellaUscite') tabellaUscite!: ElementRef;
 
   ngOnInit(): void {
-       
+    this.caricaUscitePaginate();
   }
 
   ngAfterViewInit(): void {
     this.calcolaQuantitaPagina();
-    this.caricaUscitePaginate();
   }
 
   ordina(campo: 'dataSpesa' | 'importo', direzione: 'asc' | 'desc') {
