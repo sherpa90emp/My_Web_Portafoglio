@@ -1,23 +1,25 @@
-<table #tabellaUscite class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Data <app-arrow (sort)="ordina('dataSpesa', $event)"/></th>
-      <th scope="col">Importo <app-arrow (sort)="ordina('importo', $event)"/></th>
-      <th scope="col">Descrizione</th>
-      <th scope="col">Categoria</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (uscita of paginaUscite?.content; track uscita.id) {
-        <tr>
-            <td>{{uscita.dataSpesa | date: 'd/M/yyyy'}}</td>
-            <td>{{uscita.importo | currency: 'EUR'}}</td>
-            <td>{{uscita.descrizione}}</td>
-            <td>{{uscita.categoriaSpesa}}</td>
-        </tr>
-    }
-  </tbody>
+<div #containerTabella class="flex h-100">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Data <app-arrow (sort)="ordina('dataSpesa', $event)"/></th>
+        <th scope="col">Importo <app-arrow (sort)="ordina('importo', $event)"/></th>
+        <th scope="col">Descrizione</th>
+        <th scope="col">Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (uscita of paginaUscite?.content; track uscita.id) {
+          <tr>
+              <td>{{uscita.dataSpesa | date: 'd/M/yyyy'}}</td>
+              <td>{{uscita.importo | currency: 'EUR'}}</td>
+              <td>{{uscita.descrizione}}</td>
+              <td>{{uscita.categoriaSpesa}}</td>
+          </tr>
+      }
+    </tbody>
 </table>
+</div>
 <div class="d-flex p-2 justify-content-end">
       <app-paginazione />
 </div>  
