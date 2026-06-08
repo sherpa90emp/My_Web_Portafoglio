@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { EntrataDTO, EntrataService } from '../../../service/entrata-service/entrata';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Arrow } from '../../arrow/arrow';
-import { Subject, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Page } from '../../../service/page-model/page';
 import { Paginazione } from "../../paginazione/paginazione";
+import { TabellaGenerica } from '../tabella-generica';
 
 @Component({
   selector: 'app-tabella-entrate',
@@ -12,67 +13,15 @@ import { Paginazione } from "../../paginazione/paginazione";
   templateUrl: './tabella-entrate.html',
   styleUrl: './tabella-entrate.css',
 })
-export class TabellaEntrate implements OnInit {
-  entrate: EntrataDTO[] = [];
-  
-  paginaEntrate: Page<EntrataDTO> | null = null;
-  numeroPagina = 0;
-  quantitaPagina = 18;
-  campo: 'dataEntrata' | 'importo' = 'dataEntrata';
-  ordine: 'asc' | 'desc' = 'desc';
+export class TabellaEntrate extends TabellaGenerica<EntrataDTO> {
 
-  constructor(private entrataService: EntrataService) {}
+  campo: 'dataEntrata' | 'importo' = 'dataEntrata'
 
-  private sort$ = new Subject<{ campo: 'dataEntrata' | 'importo'; direzione: 'asc' | 'desc' }>();
-
-  ngOnInit(): void {
-    this.caricaEntratePaginate();
+  constructor(private entrataService: EntrataService) {
+    super()
   }
 
-  ordina(campo: 'dataEntrata' | 'importo', direzione: 'asc' | 'desc') {
-    this.campo = campo;
-    this.ordine = direzione;
-    this.numeroPagina = 0;
-    this.caricaEntratePaginate();
-  }
-
-  caricaEntrate(): void {
-    this.entrataService.getEntrate().subscribe({
-      next: (data) => (this.entrate = data),
-      error: (error) => console.error('Errore nel caricamento dei dati', error),
-    });
-  }
-
-  caricaEntrateOrdinate() : void {
-    this.sort$
-      .pipe(
-        switchMap(({ campo, direzione }) =>
-          this.entrataService.getEntrateOrdinate(campo, direzione),
-        ),
-      )
-      .subscribe((data) => (this.entrate = data));
-  }
-
-  caricaEntratePaginate(): void {
-    this.entrataService
-      .getPaginaEntrate(this.numeroPagina, this.quantitaPagina, this.campo, this.ordine)
-      .subscribe({
-        next: (data) => (this.paginaEntrate = data),
-        error: (error) => console.error('Errore nel caricamento dei dati', error),
-      })
-  }
-
-  paginaSuccessiva(): void {
-    if (!this.paginaEntrate?.last) {
-      this.numeroPagina++;
-      this.caricaEntratePaginate();
-    }
-  }
-
-  paginaPrecendente(): void {
-    if (!this.paginaEntrate?.first) {
-      this.numeroPagina--;
-      this.caricaEntratePaginate();
-    }
+  override fetchDati(page: number, size: number, campo: string, ordine: 'asc' | 'desc'): Observable<Page<EntrataDTO>> {
+    return this.entrataService.getPaginaEntrate(page, size, campo, ordine)
   }
 }
