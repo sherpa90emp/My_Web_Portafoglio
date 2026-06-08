@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { UscitaDTO, UscitaService } from '../../../service/uscita-service/uscita';
 import { Arrow } from '../../arrow/arrow';
-import { Observable, Subject, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Paginazione } from "../../paginazione/paginazione";
 import { Page } from '../../../service/page-model/page';
-import { EntrataDTO } from '../../../service/entrata-service/entrata';
 import { TabellaGenerica } from '../tabella-generica';
 
 @Component({
