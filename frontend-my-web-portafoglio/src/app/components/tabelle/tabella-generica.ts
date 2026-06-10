@@ -1,6 +1,7 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Page } from '../../service/page-model/page';
 import { Observable } from 'rxjs';
+import { LayoutSize } from '../../service/layout-size-service/layout-size';
 
 @Directive()
 export abstract class TabellaGenerica<T> implements OnInit, AfterViewInit, OnDestroy {
@@ -14,6 +15,7 @@ export abstract class TabellaGenerica<T> implements OnInit, AfterViewInit, OnDes
   @ViewChild('containerTabella') containerTabella!: ElementRef;
 
   private resizeObserver: ResizeObserver | null = null;
+  private readonly layoutSizeService = inject(LayoutSize);
 
   ngOnInit(): void {}
 
@@ -63,8 +65,8 @@ export abstract class TabellaGenerica<T> implements OnInit, AfterViewInit, OnDes
 
   calcolaQuantitaPagina(): number {
     const altezzaViewport = window.innerHeight;
-    const altezzaNavBar = 60;
-    const altezzaPaginazione = 50;
+    const altezzaNavBar = this.layoutSizeService.getNavbarHeight();
+    const altezzaPaginazione = 2 * this.layoutSizeService.getPaginazioneHeight();
     const altezzaDisponibile = altezzaViewport - altezzaNavBar - altezzaPaginazione;
     console.log(altezzaDisponibile);
     const altezzaRiga = 41;

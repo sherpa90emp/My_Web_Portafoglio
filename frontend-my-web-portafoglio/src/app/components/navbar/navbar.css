@@ -38,4 +38,7 @@
     transform: rotateY(3600deg);
   }
 }
-      
+
+.navbar-height {
+    height: 90px;
+}     
