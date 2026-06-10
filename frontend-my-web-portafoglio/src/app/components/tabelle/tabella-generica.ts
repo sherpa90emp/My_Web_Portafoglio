@@ -62,10 +62,13 @@ export abstract class TabellaGenerica<T> implements OnInit, AfterViewInit, OnDes
   }
 
   calcolaQuantitaPagina(): number {
-    const altezzaTabella = this.containerTabella.nativeElement.clientHeight;
-    console.log('altezza tabella con resize: ', altezzaTabella);
+    const altezzaViewport = window.innerHeight;
+    const altezzaNavBar = 60;
+    const altezzaPaginazione = 50;
+    const altezzaDisponibile = altezzaViewport - altezzaNavBar - altezzaPaginazione;
+    console.log(altezzaDisponibile);
     const altezzaRiga = 41;
-    return Math.max(10, Math.floor(altezzaTabella / altezzaRiga));
+    return Math.max(10, Math.floor(altezzaDisponibile / altezzaRiga));
   }
 
   initResizeObserver(): void {
@@ -77,7 +80,7 @@ export abstract class TabellaGenerica<T> implements OnInit, AfterViewInit, OnDes
         this.caricaDati();
       }
     });
-  
+
     if (this.containerTabella?.nativeElement) {
       this.resizeObserver.observe(this.containerTabella.nativeElement);
     }
