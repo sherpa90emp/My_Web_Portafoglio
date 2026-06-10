@@ -4,7 +4,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Arrow } from '../../arrow/arrow';
 import { Observable } from 'rxjs';
 import { Page } from '../../../service/page-model/page';
-import { Paginazione } from "../../paginazione/paginazione";
+import { Paginazione } from '../../paginazione/paginazione';
 import { TabellaGenerica } from '../tabella-generica';
 
 @Component({
@@ -14,14 +14,18 @@ import { TabellaGenerica } from '../tabella-generica';
   styleUrl: './tabella-entrate.css',
 })
 export class TabellaEntrate extends TabellaGenerica<EntrataDTO> {
-
-  campo: 'dataEntrata' | 'importo' = 'dataEntrata'
+  campo: 'dataEntrata' | 'importo' = 'dataEntrata';
 
   constructor(private entrataService: EntrataService) {
-    super()
+    super();
   }
 
-  override fetchDati(page: number, size: number, campo: string, ordine: 'asc' | 'desc'): Observable<Page<EntrataDTO>> {
-    return this.entrataService.getPaginaEntrate(page, size, campo, ordine)
+  override fetchDati(
+    page: number,
+    size: number,
+    campo: string,
+    ordine: 'asc' | 'desc',
+  ): Observable<Page<EntrataDTO>> {
+    return this.entrataService.getPaginaEntrate(page, size, campo, ordine);
   }
 }

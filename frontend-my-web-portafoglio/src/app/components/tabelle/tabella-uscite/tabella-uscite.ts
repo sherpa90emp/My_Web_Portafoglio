@@ -3,7 +3,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { UscitaDTO, UscitaService } from '../../../service/uscita-service/uscita';
 import { Arrow } from '../../arrow/arrow';
 import { Observable } from 'rxjs';
-import { Paginazione } from "../../paginazione/paginazione";
+import { Paginazione } from '../../paginazione/paginazione';
 import { Page } from '../../../service/page-model/page';
 import { TabellaGenerica } from '../tabella-generica';
 
@@ -14,14 +14,18 @@ import { TabellaGenerica } from '../tabella-generica';
   styleUrl: './tabella-uscite.css',
 })
 export class Tabella extends TabellaGenerica<UscitaDTO> {
-  
-  campo: 'dataSpesa' | 'importo' = 'dataSpesa'
+  campo: 'dataSpesa' | 'importo' = 'dataSpesa';
 
   constructor(private uscitaService: UscitaService) {
-    super()
+    super();
   }
 
-  override fetchDati(page: number, size: number, campo: string, ordine: 'asc' | 'desc'): Observable<Page<UscitaDTO>> {
-    return this.uscitaService.getUscitePaginate(page, size, campo, ordine)
+  override fetchDati(
+    page: number,
+    size: number,
+    campo: string,
+    ordine: 'asc' | 'desc',
+  ): Observable<Page<UscitaDTO>> {
+    return this.uscitaService.getUscitePaginate(page, size, campo, ordine);
   }
 }
