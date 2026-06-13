@@ -134,7 +134,7 @@ DECLARE _valuta CHAR(3);
 DECLARE _isLatest INT DEFAULT 0; -- dichiaro la variabile per il fine ciclo
 DECLARE myCursor CURSOR FOR -- dichiaro il cursore per la tabella da cui preleva i dati riga per riga
 SELECT id_comp_asset, asset_id, ticker, nome_asset, settore, tipo_asset, valore_mercato, ponderazione, valore_nozionale, nominale, prezzo, area_geografica, cambio, valuta -- dichiaro le colonne che il cursore deve prelevare
-FROM staging_comp_MSCI_World; -- tabella da cui prelevare i dati
+FROM staging_composizione_MSCI_World; -- tabella da cui prelevare i dati
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET _isLatest = 1; -- gestione eccezione
 DELETE FROM composizione_MSCI_World; -- svuoto la tabella di destinazione
 OPEN myCursor; -- apro il cursore
