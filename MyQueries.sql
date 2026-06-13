@@ -115,3 +115,53 @@ SELECT
     c.nome_categoria AS nome_categoria
 FROM spese_effettuate s
 LEFT JOIN categorie_spesa c ON s.id_categoria = c.id_categoria;
+
+-- Procedura SQL per passare dati dalla tabella di staging alla tabella finale composizione_MSCI_World con relativa manipolazione di dati
+DECLARE _id_comp_asset INT; -- dichiaro le variabili per ogni colonna
+DECLARE _asset_id INT;
+DECLARE _ticker VARCHAR(30);
+DECLARE _nome_asset VARCHAR(100);
+DECLARE _settore VARCHAR(40);
+DECLARE _tipo_asset VARCHAR(30);
+DECLARE _valore_mercato DECIMAL(12,2);
+DECLARE _ponderazione DECIMAL(4,2);
+DECLARE _valore_nozionale DECIMAL(12,2);
+DECLARE _nominale DECIMAL(14,2);
+DECLARE _prezzo DECIMAL(12,2);
+DECLARE _area_geografica VARCHAR(40);
+DECLARE _cambio VARCHAR(50);
+DECLARE _valuta CHAR(3);
+DECLARE _isLatest INT DEFAULT 0; -- dichiaro la variabile per il fine ciclo
+DECLARE myCursor CURSOR FOR -- dichiaro il cursore per la tabella da cui preleva i dati riga per riga
+SELECT id_comp_asset, asset_id, ticker, nome_asset, settore, tipo_asset, valore_mercato, ponderazione, valore_nozionale, nominale, prezzo, area_geografica, cambio, valuta -- dichiaro le colonne che il cursore deve prelevare
+FROM staging_comp_MSCI_World; -- tabella da cui prelevare i dati
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET _isLatest = 1; -- gestione eccezione
+DELETE FROM composizione_MSCI_World; -- svuoto la tabella di destinazione
+OPEN myCursor; -- apro il cursore
+FETCH myCursor INTO _id_comp_asset, _asset_id, _ticker, _nome_asset, _settore, _tipo_asset, _valore_mercato, _ponderazione, _valore_nozionale, _nominale, _prezzo, _area_geografica, _cambio, _valuta; -- estrae i dati e le salva nelle variabili temporanee precedentemente dichiarate
+WHILE _isLatest = 0 DO  -- inizio del ciclo
+    IF _tipo_asset = 'Azionario' THEN
+    SET _tipo_asset = 'Azione';
+    END IF;
+    IF _tipo_asset = 'Contanti' OR _tipo_asset LIKE 'Cash%'THEN
+    SET _tipo_asset = 'Cash';
+    END IF; 
+    IF _tipo_asset = 'FX' THEN
+    SET _tipo_asset = 'Forex';
+    END IF;
+    IF _cambio IS NULL THEN
+    SET _cambio = ' ';
+    END IF;
+    IF _area_geografica IS NULL THEN
+    SET _area_geografica = ' ';
+    END IF;
+    IF _ticker IS NULL THEN
+    SET _ticker = ' ';
+    END IF;
+    INSERT INTO composizione_MSCI_World(id_comp_asset, asset_id, ticker, nome_asset, settore, tipo_asset, valore_mercato, ponderazione, valore_nozionale, nominale, prezzo, area_geografica, cambio, valuta)
+    VALUES (_id_comp_asset, _asset_id, _ticker, _nome_asset, _settore, _tipo_asset, _valore_mercato, _ponderazione, _valore_nozionale, _nominale, _prezzo, _area_geografica, _cambio, _valuta);
+    FETCH myCursor INTO _id_comp_asset, _asset_id, _ticker, _nome_asset, _settore, _tipo_asset, _valore_mercato, _ponderazione, _valore_nozionale, _nominale, _prezzo, _area_geografica, _cambio, _valuta;
+END WHILE;
+CLOSE myCursor;
+END
+    
